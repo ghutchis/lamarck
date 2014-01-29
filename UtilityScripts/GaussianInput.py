@@ -1,7 +1,9 @@
 #!/usr/bin/python
 
 # File takes the input file, which is specified on the command line and creates tetramers for each monomer
-# and creates a gaussian input file (.com) for each tetramer.
+# and creates a gaussian input file (.com) for each tetramer. Specify:
+#   1) In header definition which type of file to create (Example: PM6, B3LYP, etc.)
+#   2) Length of polymer. Original file is set up to create tetramer, but that can be changed to any length.
 
 import sys
 import pybel
