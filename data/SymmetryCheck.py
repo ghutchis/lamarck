@@ -321,13 +321,14 @@ if __name__ == "__main__":
         
         # check if dimer is symmetric
         sym = issym(monomer)
-
+        flip = getreversed(monomer)
         # write to appropriate file
         if sym:
             outputSuccess.write(monomer + "\n")
         else:
-            outputFailure.write(monomer + "\n")
-
+        # generate a list of nonsymmetric monomers and their reverses  
+            outputFailure.write(monomer + "\n" + flip + "\n")
+        
     # save the output to a new file
     outputSuccess.close()
     outputFailure.close()
