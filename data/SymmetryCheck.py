@@ -55,10 +55,13 @@ def getreversed(smiles):
     conv.SetOptions('f"%d"l"%d"' % (last, 1), conv.OUTOPTIONS)
     reverse = conv.WriteString(mol.OBMol).rstrip()
 
-    # Sanity check!! Dimer of 'reverse' should be identical
-    newdimer = pybel.readstring("smi", reverse+reverse)
-    a, b = dimer.write("can"), newdimer.write("can")
-    assert a == b, "\n %s is not the same as\n %s" % (a, b)
+    # Commented out the following, found that the dimer reverse may not be identical
+    # due to aromatic vs. quinoidal structures
+
+    # # Sanity check!! Dimer of 'reverse' should be identical
+    # newdimer = pybel.readstring("smi", reverse+reverse)
+    # a, b = dimer.write("can"), newdimer.write("can")
+    # assert a == b, "\n %s is not the same as\n %s" % (a, b)
     
     return reverse
     print reverse
@@ -304,27 +307,27 @@ if __name__ == "__main__":
     # assign the filenames to variables for later
     monomerFile = sys.argv[1]
     outputFile = sys.argv[2]
-    if outputFile == monomerFile:
-        print "Please specify a different filename for the output file"
 
     # read the file into an array or whatever, some variable
     monomers = open(monomerFile).readlines()
 
+    # define success & failure output files
+    outputSuccess = open("%s-symmetric.smi" % outputFile, "w")
+    outputFailure = open("%s-notsymmetric.smi" % outputFile, "w")
 
-    outputMonomers = monomers
     # for each line in the variable
     for monomer in monomers:
         monomer = monomer.rstrip()
-        # debugging
-        print "monomer: " + monomer
+        
         # check if dimer is symmetric
-        sym = issym(monomer * 2)
+        sym = issym(monomer)
 
-        if not sym:
-            # if not, create another smiles that's the reverse of the dimer
-            outputMonomers.append(getreversed(monomer))
+        # write to appropriate file
+        if sym:
+            outputSuccess.write(monomer + "\n")
+        else:
+            outputFailure.write(monomer + "\n")
 
     # save the output to a new file
-    output = open("%s.smi" % outputFile, "w")
-    output.write(outputMonomers)
-    output.close()
+    outputSuccess.close()
+    outputFailure.close()
