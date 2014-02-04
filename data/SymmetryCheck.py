@@ -284,10 +284,9 @@ def usage():
     print """
   python SymmetryCheck.py monomerTextFile outputFile
 
-    where 
-       monomerTextFile contains a list of monomers to check for symmetry (one monomer 
-        per line)
-       outputFile is the name of the output file with all monomers
+    where: 
+       a) monomerTextFile contains a list of monomers to check for symmetry (one monomer per line)
+       b) outputFile is the name of the output file to which the monomers will be written
 
 """
     sys.exit(1)
