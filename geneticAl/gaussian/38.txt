@@ -1,0 +1,1 @@
+c(s1)cc(C=C)c1~c(s1)c(OC)c(OC)c1_2_4

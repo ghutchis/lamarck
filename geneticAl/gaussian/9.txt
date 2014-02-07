@@ -1,0 +1,1 @@
+c(s1)c(OCCCO2)c2c1~c(cc1)cc(c12)[nH]c(c2c3)ccc3_1_5

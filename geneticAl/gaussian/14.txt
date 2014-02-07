@@ -1,0 +1,1 @@
+c(s1)c(SC(=O)C(=O)S2)c2c1~c(cc1)ccc1C=C_1_6

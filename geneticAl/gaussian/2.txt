@@ -1,0 +1,1 @@
+c(s1)cc(c12)C(=C(C#N)C#N)c(c2s3)cc3~c(s1)c(OC=N2)c2c1_1_1

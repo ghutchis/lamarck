@@ -1,0 +1,1 @@
+c(s1)c(OC=C2)c2c1~c(cc1)cc(c12)Cc(c2c3)ccc3_0_2

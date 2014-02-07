@@ -1,0 +1,1 @@
+c(s1)cc(c2ccccc2)c1~c(s1)c(cc(N(=O)=O)c(N(=O)=O)c2)c2c1_2_3

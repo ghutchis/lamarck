@@ -1,0 +1,1 @@
+c(s1)c(cc(F)c(F)c2)c2c1~C(C1=O)=C(C=CC=C2)C2=C1_3_3
