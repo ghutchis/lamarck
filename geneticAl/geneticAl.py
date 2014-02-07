@@ -44,71 +44,73 @@ from Admin import *
 FAIL = -9999999
 
 # These are the monomer used for the local search
-chosen_monomers = {8:['c(s1)c(OCCCO2)c2c1',
- 'c(s1)c(cccc2)c2c1',  'c(s1)cc(c12)[nH]c(c2s3)cc3',
- 'c(s1)cc(c12)Cc(c2s3)cc3', 'c(s1)cc(c12)c(=O)c(c2s3)cc3',
- 'c1oc(c2)c(c1)oc2', 'c(s1)cc(OC)c1',
- 'C(C1=C)=C(C=CC=C2)C2=C1', 'c(s1)c(ON=N2)c2c1',
- 'c(s1)c(OC=C2)c2c1', 'c(s1)c(NC=N2)c2c1',
- 'c(s1)c(SC=N2)c2c1', 'c(s1)c(OC=N2)c2c1',
- 'c(s1)c(nccn2)c2c1', 'c1oc(c2)c(c1)sc2',
- 'C(S1)=CC2=C1C=C(C2=O)', 'C1=CC(C2)=C(C1)C=C2',
- 'c(s1)c(cc(OC)c(OC)c2)c2c1', 'c(s1)c(OCCO2)c2c1',
- 'c(s1)c(NC=C2)c2c1', 'c(s1)c(ncnc2)c2c1'],
-6:['c(s1)c(ncnc2)c2c1',
- 'c(s1)c(NC=C2)c2c1',
- 'c(s1)c(nccn2)c2c1',
- 'c(s1)c(NC=N2)c2c1',
- 'c1oc(c2)c(c1)sc2',
- 'c1oc(c2)c(c1)oc2',
- 'c(s1)cc(c12)Cc(c2s3)cc3',
- 'c(s1)c(OC=C2)c2c1',
- 'C(S1)=CC2=C1C=C(C2=O)',
- 'c(s1)cc(c12)[nH]c(c2s3)cc3',
- 'c(s1)c(cc(OC)c(OC)c2)c2c1',
- 'c(s1)cc(c12)c(=O)c(c2s3)cc3',
- 'c(s1)cc(OC)c1',
- 'C1=CC(C2)=C(C1)C=C2',
- 'c(s1)c(OCCO2)c2c1',
- 'c(s1)c(OC=N2)c2c1',
- 'c(s1)c(OCCCO2)c2c1',
- 'c([nH]1)ccc1C=C',
- 'c(s1)c(cccc2)c2c1',
- 'c(s1)c(SC=N2)c2c1',
- 'c(s1)c(ON=N2)c2c1',
- 'c(s1)c(OCCS2)c2c1',
- 'c(s1)c(c(F)c(F)c(F)c(F)2)c2c1',
- 'c(s1)c(OC=CO2)c2c1',
- 'C(C1=C)=C(C=CC=C2)C2=C1',
- 'c1sc(c2)c(c1)sc2',
- 'c(s1)c(SN=N2)c2c1',
- 'c(s1)cc(O)c1',
- 'C(C1=O)=C(C=CC=C2)C2=C1',
- 'c1[nH]c(c2)c(c1)[nH]c2',
- 'c(s1)c(OCO2)c2c1',
- 'c(o1)ccc1',
- 'c(s1)c(cnnc2)c2c1',
- 'c([nH]1)ccc1C#C',
- 'c(s1)c(NCN2)c2c1',
- 'c(s1)ccc1C=C',
- 'c1sc(cc2c3)c(c1)cc2sc3',
- 'c(s1)c(cc(F)c(F)c2)c2c1',
- 'c(s1)cc(C=C)c1',
- 'c(s1)cc(c12)C(=C(C#N)C#N)c(c2s3)cc3',
- 'c([nH]1)cnc1',
- 'c(s1)cc(S)c1',
- 'c(s1)c(N(=O)=O)c(N)c1',
- 'c(s1)c(SCS2)c2c1',
- 'C(C1=O)=CC=C1',
- 'c(c(non1)c12)ccc2',
- 'C=CN=N',
- 'c(cc1)cc(c12)C(=O)c(c2c3)ccc3',
- 'c(s1)c(cc(C#N)c(C#N)c2)c2c1',
- 'c(s1)c(C(=O)OC2(=O))c2c1'][:29]
- }
+chosen_monomers = {8: ['c(s1)c(OCCCO2)c2c1',
+                       'c(s1)c(cccc2)c2c1',  'c(s1)cc(c12)[nH]c(c2s3)cc3',
+                       'c(s1)cc(c12)Cc(c2s3)cc3', 'c(s1)cc(c12)c(=O)c(c2s3)cc3',
+                       'c1oc(c2)c(c1)oc2', 'c(s1)cc(OC)c1',
+                       'C(C1=C)=C(C=CC=C2)C2=C1', 'c(s1)c(ON=N2)c2c1',
+                       'c(s1)c(OC=C2)c2c1', 'c(s1)c(NC=N2)c2c1',
+                       'c(s1)c(SC=N2)c2c1', 'c(s1)c(OC=N2)c2c1',
+                       'c(s1)c(nccn2)c2c1', 'c1oc(c2)c(c1)sc2',
+                       'C(S1)=CC2=C1C=C(C2=O)', 'C1=CC(C2)=C(C1)C=C2',
+                       'c(s1)c(cc(OC)c(OC)c2)c2c1', 'c(s1)c(OCCO2)c2c1',
+                       'c(s1)c(NC=C2)c2c1', 'c(s1)c(ncnc2)c2c1'],
+                   6: ['c(s1)c(ncnc2)c2c1',
+                       'c(s1)c(NC=C2)c2c1',
+                       'c(s1)c(nccn2)c2c1',
+                       'c(s1)c(NC=N2)c2c1',
+                       'c1oc(c2)c(c1)sc2',
+                       'c1oc(c2)c(c1)oc2',
+                       'c(s1)cc(c12)Cc(c2s3)cc3',
+                       'c(s1)c(OC=C2)c2c1',
+                       'C(S1)=CC2=C1C=C(C2=O)',
+                       'c(s1)cc(c12)[nH]c(c2s3)cc3',
+                       'c(s1)c(cc(OC)c(OC)c2)c2c1',
+                       'c(s1)cc(c12)c(=O)c(c2s3)cc3',
+                       'c(s1)cc(OC)c1',
+                       'C1=CC(C2)=C(C1)C=C2',
+                       'c(s1)c(OCCO2)c2c1',
+                       'c(s1)c(OC=N2)c2c1',
+                       'c(s1)c(OCCCO2)c2c1',
+                       'c([nH]1)ccc1C=C',
+                       'c(s1)c(cccc2)c2c1',
+                       'c(s1)c(SC=N2)c2c1',
+                       'c(s1)c(ON=N2)c2c1',
+                       'c(s1)c(OCCS2)c2c1',
+                       'c(s1)c(c(F)c(F)c(F)c(F)2)c2c1',
+                       'c(s1)c(OC=CO2)c2c1',
+                       'C(C1=C)=C(C=CC=C2)C2=C1',
+                       'c1sc(c2)c(c1)sc2',
+                       'c(s1)c(SN=N2)c2c1',
+                       'c(s1)cc(O)c1',
+                       'C(C1=O)=C(C=CC=C2)C2=C1',
+                       'c1[nH]c(c2)c(c1)[nH]c2',
+                       'c(s1)c(OCO2)c2c1',
+                       'c(o1)ccc1',
+                       'c(s1)c(cnnc2)c2c1',
+                       'c([nH]1)ccc1C#C',
+                       'c(s1)c(NCN2)c2c1',
+                       'c(s1)ccc1C=C',
+                       'c1sc(cc2c3)c(c1)cc2sc3',
+                       'c(s1)c(cc(F)c(F)c2)c2c1',
+                       'c(s1)cc(C=C)c1',
+                       'c(s1)cc(c12)C(=C(C#N)C#N)c(c2s3)cc3',
+                       'c([nH]1)cnc1',
+                       'c(s1)cc(S)c1',
+                       'c(s1)c(N(=O)=O)c(N)c1',
+                       'c(s1)c(SCS2)c2c1',
+                       'C(C1=O)=CC=C1',
+                       'c(c(non1)c12)ccc2',
+                       'C=CN=N',
+                       'c(cc1)cc(c12)C(=O)c(c2c3)ccc3',
+                       'c(s1)c(cc(C#N)c(C#N)c2)c2c1',
+                       'c(s1)c(C(=O)OC2(=O))c2c1']
+                   [:29]}
+
 
 def exitwitherror():
     sys.exit(__doc__)
+
 
 def createAllCombinations(mymonos, length):
     # Make all possible polymers of a particular length 
@@ -122,6 +124,7 @@ def createAllCombinations(mymonos, length):
             for directions in alldirs(monos, length):
                 dimerunits.append((monos, directions[0], directions[1]))
     return dimerunits
+
 
 class GA(object):
     def __init__(self, admin, length, Nchromos, R, simmatrix, objectivefn,
@@ -137,12 +140,15 @@ class GA(object):
         self.initscorefn()
         if logmessage:
             self.log(logmessage)
+
     def initscorefn(self):
         self.efficiency = Efficiency()
         self.efficiency.unittest()
+
     def log(self, msg):
         self.admin.log.write(msg + "\n")
         print msg
+
     def initpop(self):
         self.log("\tInitialising population")
         # Make self.N polymers of length self.length
@@ -156,6 +162,7 @@ class GA(object):
             dimerunits.append((monos, directions[0], directions[1]))
         self.pop = dimerunits
         self.logpop(self.pop)
+
     def initallpop(self, chosen_monos=None):
         if chosen_monos is None:
             chosen_monos = self.monomers
@@ -173,15 +180,18 @@ class GA(object):
         self.pop = newunits
         self.log("\tTotal size of uncalc pop is %d" % len(newunits))
         self.logpop(self.pop)
+
     def logpop(self, pop):
         self.log("Population of size %d" % len(pop))
         for i, pol in enumerate(pop):
 ##            self.log("%d: %s %s %s" % (i, pol[0], pol[1], pol[2]))
             self.log(polname(pol))
+
     def loggjf(self):
         self.log("%d GJF files created" % len(self.gjfs))
         for j, x in enumerate(self.gjforder):
             self.log("GJF %d: polymer numbers %s" % (j, self.gjfs[x]))
+
     def logfitness(self, pop, text):
         self.log("\t%s population fitness" % text)
         for j, x in enumerate(sorted(pop, key = lambda x: self.getscore(polname(x)), reverse=True)):
@@ -190,12 +200,13 @@ class GA(object):
                 self.log("%d: %s with %.3f %s" % (j, polname(x), score, logtext))
             else:
                 self.log("%d: %s with FAIL" % (j, polname(x)))
-    def makeGJF(self, pop):
+
+    def makeGJF(self, pop, length):
         self.log("\tCreating txt files")
         if not os.path.isdir("gaussian"):
             os.mkdir("gaussian")
         self.gjfs = {}
-        
+
         for i, x in enumerate(pop):
             if self.getscore(polname(x)) == None:
                 self.gjfs.setdefault(polname(x), []).append(i)
@@ -205,12 +216,28 @@ class GA(object):
         # Sort the gjfs by molecular weight
         self.gjforder = sorted(self.gjfs.keys(), key=lambda x: molname_to_mol(str(x), self.length).molwt, reverse=True)
 
+        for idx, smi in enumerate(self.gjforder):
+            mol = molname_to_mol(smi, length)
+            mol.make3D()
+            globalopt(mol)
 
-        self.loggjf()
-        for j, pname in enumerate(self.gjforder):
-            output = open(os.path.join("gaussian", "%d.txt" % j), "w")
-            output.write(pname)
+            header = "%%nproc=1\n%%mem=1GB\n%%Chk=%s.chk\n#T PM6 OPT"
+            header_b = """
+--Link1--
+%%nproc=1
+%%mem=1GB
+%%Chk=%s.chk
+%%NoSave
+# Geom=AllCheck ZINDO(NStates=15,Singlets)
+"""
+            gaussian = (header + "\n\n" + smi + "\n"
+                + "\n".join(mol.write("gau").replace("0  3\n", "0  1\n").split("\n")[3:])
+                + header_b) % (idx, idx)
+            output = open(os.path.join("gaussian", "%s.gjf" % idx), "w")
+            output.write(gaussian)
             output.close()
+            print "finished creating %s.gjf" % idx
+
     def runGaussian(self):
         CPUS_PER_NODE = 4
 
@@ -221,7 +248,8 @@ class GA(object):
             self.log("\tRunning Gaussian")
             output = open("tasks", "w")
             for i in range(len(self.gjfs)):
-                output.write('echo -n "%d "; date; cd $SGE_O_WORKDIR; python %s/smi23D.py %d %d; cd gaussian; g09 < %d.gjf > %d.out; gzip %d.out; echo -n "%d "; date; rm -f %d.chk\n' % (i, relpath, i, self.length, i, i, i, i, i))
+                output.write(
+                    "echo -n \"%d \"; date; cd $PBS_O_WORKDIR; python %s/smi23D.py %d %d; cd gaussian; g09 < %d.gjf > %d.out; gzip %d.out; echo -n \"%d \"; date; rm -f %d.chk\n" % (i, relpath, i, self.length, i, i, i, i, i))
 
             output.close()
             template = open("template.sh", "r").read()
@@ -265,7 +293,7 @@ class GA(object):
                 filename = os.path.join("gaussian", "%d.out.gz" % i)
                 if os.path.isfile(filename):
                     os.remove(filename)
-            qsub = subprocess.Popen(["qsub" ,"runwith1.sh"], stdout=subprocess.PIPE)
+            qsub = subprocess.Popen(["qsub", "runwith1.sh"], stdout=subprocess.PIPE)
             stdout = qsub.stdout.read()
             self.log(stdout)
             pid = stdout.split(".")[0]
@@ -289,7 +317,7 @@ class GA(object):
                     continue
                 lines = iter(text.split("\n"))
                 for line in lines:
-                    if line.startswith(" #T PM6 OPT"): 
+                    if line.startswith(" #T PM6 OPT"):
                         line = lines.next()
                         line = lines.next()
                         line = lines.next()
@@ -320,7 +348,7 @@ class GA(object):
 
 ##                myjson = json.dumps([homo, lumo, etens, etoscs])
                 myjson = json.dumps([homo, lumo, etens, etoscs,
-                                        data.moenergies[0], data.homos[0]])
+                                    data.moenergies[0], data.homos[0]])
                 tostore.append((pname, myjson))
 
             for pname, myjson in tostore:
@@ -412,9 +440,11 @@ The mutations should always allow the exploration of local space
 
         self.pop = self.pop[:self.N/2] + self.children[:self.N/2]
 
+
 def testdb(admin):
     pdb.set_trace()
     sys.exit(0)
+
 
 def doGA(admin, length, Nchromos, nbrs, simmatrix,
          moverandomly=False, no_gaussian=False,
@@ -425,19 +455,20 @@ def doGA(admin, length, Nchromos, nbrs, simmatrix,
     ga = GA(admin, length, Nchromos, nbrs, simmatrix, objectivefn, logmessage)
     ga.initpop()
     if not no_gaussian:
-        ga.makeGJF(ga.pop)
+        ga.makeGJF(ga.pop, length)
         ga.runGaussian()
         ga.extractcalcdata()
     ga.logfitness(ga.pop, "Initial")
     for i in range(100):
         ga.makechildren(moverandomly)
         if not no_gaussian:
-            ga.makeGJF(ga.children)
+            ga.makeGJF(ga.children, length)
             ga.runGaussian()
             ga.extractcalcdata()
         ga.logfitness(ga.children, "Children")
         ga.nextgen()
         ga.logfitness(ga.pop, "Next generation")
+
 
 def doExhaustive(admin, length, simmatrix, initallpop=False):
     ga = GA(admin, length, None, None, simmatrix, None)
@@ -453,20 +484,21 @@ def doExhaustive(admin, length, simmatrix, initallpop=False):
         for x in myranges:
             print "Working on up to %d monomers" % x
             ga.initallpop(monos_to_use[:x])
-            ga.makeGJF(ga.pop)
+            ga.makeGJF(ga.pop, length)
             ga.runGaussian()
             ga.extractcalcdata()
     else:
         for i in range(0, len(monos_to_use)):
             print "== Working on %d, %s ==" % (i, monos_to_use[i])
             ga.initpop(i)
-            ga.makeGJF(ga.pop)
+            ga.makeGJF(ga.pop, length)
             ga.runGaussian()
             ga.extractcalcdata()
 
+
 def test():
-   import doctest
-   doctest.testmod()
+    import doctest
+    doctest.testmod()
 
 if __name__ == "__main__":
     parser = OptionParser()
