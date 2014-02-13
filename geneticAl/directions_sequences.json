@@ -3325,7 +3325,20 @@
 "(di)(di)(di)(di)(di)(di)(qu)(qu)",
 "(di)(di)(di)(di)(di)(di)(qu)(di)",
 "(di)(di)(di)(di)(di)(di)(di)(qu)",
-"(di)(di)(di)(di)(di)(di)(di)(di)"]],
+"(di)(di)(di)(di)(di)(di)(di)(di)"],
+[ "(qu)(qu)(qu)(qu)(qu)(qu)(qu)(qu)",
+"(qu)(qu)(qu)(qu)(qu)(qu)(uq)(uq)",
+"(qu)(qu)(qu)(qu)(uq)(uq)(qu)(qu)",
+"(qu)(qu)(qu)(qu)(uq)(uq)(uq)(uq)",
+"(qu)(qu)(uq)(uq)(qu)(qu)(qu)(qu)",
+"(qu)(qu)(uq)(uq)(qu)(qu)(uq)(uq)",
+"(qu)(qu)(uq)(uq)(uq)(uq)(qu)(qu)",
+"(uq)(uq)(qu)(qu)(qu)(qu)(qu)(qu)",
+"(uq)(uq)(qu)(qu)(uq)(uq)(qu)(qu)",
+"(uq)(uq)(uq)(uq)(qu)(qu)(qu)(qu)",
+"(uq)(qu)(uq)(qu)(uq)(qu)(uq)(qu)",
+"(qu)(uq)(qu)(uq)(qu)(uq)(qu)(uq)"],
+["(qu)(qu)(qu)(qu)(qu)(qu)(qu)(qu)"]],
 "2": [["(id)(id)",
 "(id)(di)",
 "(di)(id)",
@@ -3377,7 +3390,15 @@
 ["(qu)(qu)",
 "(qu)(di)",
 "(di)(qu)",
-"(di)(di)"]],
+"(di)(di)"],
+[
+         "(qu)(qu)",
+         "(uq)(qu)",
+         "(qu)(uq)"
+      ],
+      [
+         "(qu)(qu)"
+      ]],
 "4": [["(id)(id)(id)(id)",
 "(id)(id)(id)(di)",
 "(id)(id)(di)(id)",
@@ -3585,7 +3606,17 @@
 "(di)(di)(qu)(qu)",
 "(di)(di)(qu)(di)",
 "(di)(di)(di)(qu)",
-"(di)(di)(di)(di)"]],
+"(di)(di)(di)(di)"],
+      [
+         "(qu)(qu)(qu)(qu)",
+         "(qu)(qu)(uq)(uq)",
+         "(uq)(uq)(qu)(qu)",
+         "(uq)(qu)(uq)(qu)",
+         "(qu)(uq)(qu)(uq)"
+      ],
+      [
+         "(qu)(qu)(qu)(qu)"
+      ]],
 "6": [["(id)(id)(id)(id)(id)(id)",
 "(id)(id)(id)(id)(id)(di)",
 "(id)(id)(id)(id)(di)(id)",
@@ -4417,4 +4448,15 @@
 "(di)(di)(di)(di)(qu)(qu)",
 "(di)(di)(di)(di)(qu)(di)",
 "(di)(di)(di)(di)(di)(qu)",
-"(di)(di)(di)(di)(di)(di)"]]}
+"(di)(di)(di)(di)(di)(di)"],
+      [
+         "(qu)(qu)(qu)(qu)(qu)(qu)",
+         "(qu)(qu)(qu)(qu)(uq)(uq)",
+         "(qu)(qu)(uq)(uq)(qu)(qu)",
+         "(uq)(uq)(qu)(qu)(qu)(qu)",
+         "(uq)(qu)(uq)(qu)(uq)(qu)",
+         "(qu)(uq)(qu)(uq)(qu)(uq)"
+      ],
+      [
+         "(qu)(qu)(qu)(qu)(qu)(qu)"
+      ]]}
