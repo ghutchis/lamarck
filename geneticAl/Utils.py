@@ -8,31 +8,36 @@ import Efficiency as effmod
 
 # The following is taken from
 #   http://wiki.python.org/moin/PythonDecoratorLibrary#Memoize
+
+
 class memoized(object):
-   '''Decorator. Caches a function's return value each time it is called.
-   If called later with the same arguments, the cached value is returned 
-   (not reevaluated).
-   '''
-   def __init__(self, func):
-      self.func = func
-      self.cache = {}
-   def __call__(self, *args):
-      try:
-         return self.cache[args]
-      except KeyError:
-         value = self.func(*args)
-         self.cache[args] = value
-         return value
-      except TypeError:
-         # uncachable -- for instance, passing a list as an argument.
-         # Better to not cache than to blow up entirely.
-         return self.func(*args)
-   def __repr__(self):
-      '''Return the function's docstring.'''
-      return self.func.__doc__
-   def __get__(self, obj, objtype):
-      '''Support instance methods.'''
-      return functools.partial(self.__call__, obj)
+    """Decorator. Caches a function's return value each time it is called.
+    If called later with the same arguments, the cached value is returned
+    (not reevaluated).
+    """
+    def __init__(self, func):
+        self.func = func
+        self.cache = {}
+
+    def __call__(self, *args):
+        try:
+            return self.cache[args]
+        except KeyError:
+            value = self.func(*args)
+            self.cache[args] = value
+            return value
+        except TypeError:
+            # uncachable -- for instance, passing a list as an argument.
+            # Better to not cache than to blow up entirely.
+            return self.func(*args)
+
+    def __repr__(self):
+        """Return the function's docstring."""
+        return self.func.__doc__
+
+    def __get__(self, obj, objtype):
+        """Support instance methods."""
+        return functools.partial(self.__call__, obj)
 
 @memoized
 def getreversed(smiles):
@@ -74,9 +79,9 @@ def issym(smiles):
 def _readdatafiles():
     relpath = os.sep.join(__file__.split(os.sep)[:-1])
 
-    f = open(os.path.join(relpath, "directions.json"))
+    f = open(os.path.join(relpath, "directions_sequences.json"))
     # Need to remove the unicode from the json or else Open Babel won't like it
-    combinations = dict([(float(x), [[str(t) for t in z] for z in y]) for x,y in json.load(f).iteritems()])
+    combinations = dict([(float(x), [[str(t) for t in z] for z in y]) for x, y in json.load(f).iteritems()])
     f.close()
     return combinations
 
