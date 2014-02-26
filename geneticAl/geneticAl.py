@@ -113,7 +113,7 @@ def exitwitherror():
 
 
 def createAllCombinations(mymonos, length):
-    # Make all possible polymers of a particular length 
+    # Make all possible polymers of a particular length
     dimerunits = []
     for i in range(len(mymonos)):
         for j in range(i, len(mymonos)):
@@ -221,88 +221,44 @@ class GA(object):
             mol.make3D()
             globalopt(mol)
 
-            header = "%%nproc=1\n%%mem=1GB\n%%Chk=%s.chk\n#T PM6 OPT"
-            header_b = """
---Link1--
-%%nproc=1
-%%mem=1GB
-%%Chk=%s.chk
-%%NoSave
-# Geom=AllCheck ZINDO(NStates=15,Singlets)
-"""
+            header = "%nproc=1\n%mem=1GB\n#n ZINDO(NStates=10,Singlets)"
+            header_b = "\n"
+#            header = "%%nproc=1\n%%mem=1GB\n%%Chk=%s.chk\n#T PM6 OPT"
+#            header_b = """
+#--Link1--
+#%%nproc=1
+#%%mem=1GB
+#%%Chk=%s.chk
+#%%NoSave
+## Geom=AllCheck ZINDO(NStates=15,Singlets)
+#"""
             gaussian = (header + "\n\n" + smi + "\n"
                 + "\n".join(mol.write("gau").replace("0  3\n", "0  1\n").split("\n")[3:])
-                + header_b) % (idx, idx)
+                + header_b) # % (idx, idx)
             output = open(os.path.join("gaussian", "%s.gjf" % idx), "w")
             output.write(gaussian)
             output.close()
             print "finished creating %s.gjf" % idx
 
     def runGaussian(self):
-        CPUS_PER_NODE = 4
-
         if len(self.gjfs) > 0:
+            # Create gaussian/end.txt to terminate the GA
             if os.path.isfile(os.path.join("gaussian", "end.txt")):
                 self.log("\nFound end.txt. Finishing")
                 sys.exit(0)
+
             self.log("\tRunning Gaussian")
-            output = open("tasks", "w")
+
+            # loop through the gjf input files and run g09
             for i in range(len(self.gjfs)):
-                output.write(
-                    "echo -n \"%d \"; date; cd $PBS_O_WORKDIR; python %s/smi23D.py %d %d; cd gaussian; g09 < %d.gjf > %d.out; gzip %d.out; echo -n \"%d \"; date; rm -f %d.chk\n" % (i, relpath, i, self.length, i, i, i, i, i))
-
-            output.close()
-            template = open("template.sh", "r").read()
-            time_per_job = 3 # 16 for 8mers, 11 for 6, 6 for 4, 3 for dimers
-
-            if self.length >= 8 and len(self.gjfs) <= 64:
-                # Schedule the long jobs first, and give those slow jobs
-                # extra time
-                scheme = "largevariation"
-            else:
-                scheme = "normal"
-
-            if scheme == "largevariation":
-                N_parallel_jobs = len(self.gjfs) * 5 / CPUS_PER_NODE
-                if N_parallel_jobs == 0:
-                    N_parallel_jobs = 1
-                mins = time_per_job * 2
-                hours = 0
-                N_nodes = 1 + (N_parallel_jobs - 1) / CPUS_PER_NODE
-            else: # Normal
-                MAX = CPUS_PER_NODE * 8
-                if len(self.gjfs) <= MAX:
-                    M = 1
-                    N_nodes = 1 + (len(self.gjfs) - 1) / CPUS_PER_NODE
-                else:
-                    M = 1 + (len(self.gjfs) - 1) / MAX
-                    N_nodes = MAX / CPUS_PER_NODE
-                walltime = int(M * time_per_job)
-                mins = walltime % 60
-                hours = walltime / 60
-            # Workaround for Stokes (3 nodes not allowed)
-            if N_nodes == 3:
-                N_nodes= 4
-            template = template.replace("REPLACENODES", str(N_nodes))
-            template = template.replace("REPLACEHOUR", str(hours))
-            template = template.replace("REPLACEMIN", str(mins))
-            output = open("runwith1.sh", "w")
-            print >> output, template
-            output.close()
-            for i in range(len(self.gjfs)):
+                # if there are old .gz files (e.g., previous generation).. remove them
                 filename = os.path.join("gaussian", "%d.out.gz" % i)
                 if os.path.isfile(filename):
                     os.remove(filename)
-            qsub = subprocess.Popen(["qsub", "runwith1.sh"], stdout=subprocess.PIPE)
-            stdout = qsub.stdout.read()
-            self.log(stdout)
-            pid = stdout.split(".")[0]
-            stderr = ""
-            while not stderr.strip():
-                time.sleep(10)
-                qstat = subprocess.Popen(["qstat", pid], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                stdout = qstat.stdout.read()
-                stderr = qstat.stderr.read()
+                # run g09 as a subprocess
+                g09 = subprocess.call("(cd gaussian; g09 %d.gjf %d.out)" % (i,i), shell=True)
+
+            gzCmd = subprocess.call("(cd gaussian; gzip *.out)", shell=True)
 
     def extractcalcdata(self):
         if len(self.gjfs) > 0:
@@ -346,9 +302,10 @@ class GA(object):
                 if max(etens) <= 0:
                     continue
 
-##                myjson = json.dumps([homo, lumo, etens, etoscs])
-                myjson = json.dumps([homo, lumo, etens, etoscs,
-                                    data.moenergies[0], data.homos[0]])
+                myjson = json.dumps([homo, lumo, etens, etoscs.tolist()])
+                # adds JSON with HOMO, LUMO, electronic transition energies, et oscillator strengths
+                # and then all the MO energies
+               # myjson = json.dumps([homo, lumo, etens, etoscs, data.moenergies[0], data.homos[0]])
                 tostore.append((pname, myjson))
 
             for pname, myjson in tostore:

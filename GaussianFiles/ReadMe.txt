@@ -1,1 +1,0 @@
-All run Gaussian files will be stored in this folder
