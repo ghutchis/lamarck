@@ -1,1 +1,0 @@
-c(s1)c(NC=CN2)c2c1~C(S1)=CC2=C1C=C(C2=O)_1_6

@@ -1,1 +1,0 @@
-C=C(C1=O)C(=O)C1~C(=C1C(=O)OC(=O)C12)C3C(=O)OC(=O)C=3C=2_2_0

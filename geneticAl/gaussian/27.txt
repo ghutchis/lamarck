@@ -1,1 +1,0 @@
-c(s1)cc(c2ccccc2)c1~c(s1)c(OC=N2)c2c1_0_6

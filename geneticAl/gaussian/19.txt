@@ -1,1 +1,0 @@
-c(s1)c(O)c(C(=O)O)c1~c(s1)c(C(=O)CC2(=O))c2c1_2_0
