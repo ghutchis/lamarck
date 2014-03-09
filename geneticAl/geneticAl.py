@@ -302,7 +302,9 @@ class GA(object):
                 tostore.append((pname, myjson))
 
             for pname, myjson in tostore:
-                self.admin.storedata(pname, self.gen, myjson)
+                # get the monomer name
+                output = get_comb(pname, self.length)
+                self.admin.storedata(pname, self.gen, output[0], myjson)
 
     def getscore(self, polname, log=False):
         data = self.admin.getdata(polname)
@@ -312,7 +314,7 @@ class GA(object):
                 return None, None
             else:
                 return None
-        gen, myjson = data
+        gen, sequence, myjson = data
         jsondata = json.loads(myjson)
         if len(jsondata) == 4:
             homo, lumo, etens, etoscs = jsondata

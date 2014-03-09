@@ -143,9 +143,9 @@ def molname_to_smile(molname, length):
     >>> print smile
     C=CN=Nc(s1)c(OCO2)c2c1C=CN=Nc(s1)c(OCO2)c2c1
     """
-    parts, d1, d2 = molname.split("_")
-    b = parts.split("~") # monos
-    comb = combinations[length][int(d1)][int(d2)]
+    output = get_comb(molname, length)
+    comb = output[0]
+    b = output[1]
     print comb
 
     reversed = []
@@ -162,6 +162,17 @@ def molname_to_smile(molname, length):
 def molname_to_mol(molname, length):
     smi = molname_to_smile(molname, length)
     return pybel.readstring("smi", smi)
+
+
+def get_comb(molname, length):
+    combinations = _readdatafiles()
+    parts, d1, d2 = molname.split("_")
+    comb = combinations[length][int(d1)][int(d2)]
+
+    b = parts.split("~") # monos
+
+    return comb, b
+
 
 def polname(polymer, spacer="_"):
     b, d1, d2 = polymer

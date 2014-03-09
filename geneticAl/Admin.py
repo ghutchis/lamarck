@@ -36,12 +36,12 @@ class Admin(object):
         self.db = self.conn.cursor()
         if createtable:
             self.db.execute("""create table polymer
-(smiles text primary key, gen integer, json text)""")
+(smiles text primary key, gen integer, sequence text, json text)""")
             self.conn.commit()
 
-    def storedata(self, key, gen, text=""):
+    def storedata(self, key, gen, sequence="", json=""):
         self.db.execute("""insert into polymer
-values ('%s', %d, '%s')""" % (key, gen, text))
+values ('%s', %d, '%s', '%s')""" % (key, gen, sequence, json))
         self.conn.commit()
 
     def getdata(self, key):
