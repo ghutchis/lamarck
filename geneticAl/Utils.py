@@ -145,8 +145,9 @@ def molname_to_smile(molname, length):
     """
     parts, d1, d2 = molname.split("_")
     b = parts.split("~") # monos
-
     comb = combinations[length][int(d1)][int(d2)]
+    print comb
+
     reversed = []
     for i in range(2):
         if issym(b[i]):

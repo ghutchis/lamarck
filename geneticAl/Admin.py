@@ -12,16 +12,21 @@ try:
 except ImportError:
     import sqlite3
 
+# TODO If we want to analyze by sequence, can we save the sequence code in the database or will this make the database too large?
+
+
 class Admin(object):
     def __init__(self, jobname):
         self.job = jobname
         self.initlog()
         self.initdb()
+
     def initlog(self):
         logfile = "%s.txt" % self.job
 ##        if os.path.isfile(logfile):
 ##            exitwitherror()
         self.log = open(logfile, "a")
+
     def initdb(self):
         createtable = False
         db = "%s.db" % self.job
@@ -33,10 +38,12 @@ class Admin(object):
             self.db.execute("""create table polymer
 (smiles text primary key, gen integer, json text)""")
             self.conn.commit()
+
     def storedata(self, key, gen, text=""):
         self.db.execute("""insert into polymer
 values ('%s', %d, '%s')""" % (key, gen, text))
         self.conn.commit()
+
     def getdata(self, key):
         self.db.execute("""select * from polymer where
 smiles='%s'""" % key)
@@ -45,14 +52,17 @@ smiles='%s'""" % key)
             return fetch[1:]
         else:
             return None
+
     def getalldata(self):
         self.db.execute("select * from polymer")
         fetch = self.db.fetchall()
         return fetch
+
     def deletedata(self, key):
         self.db.execute("""delete from polymer where
 smiles='%s'""" % key)
         self.conn.commit()
+
 
 def testdb(admin):
     pdb.set_trace()

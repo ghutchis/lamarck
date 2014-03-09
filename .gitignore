@@ -1,3 +1,14 @@
 .DS_Store
 *.pyc
 *.pyo
+*.txt
+*.db
+*.rwf
+*.int
+*.inp
+*.chk
+*.d2e
+*.scr
+*.gz
+*.out
+*.gjf

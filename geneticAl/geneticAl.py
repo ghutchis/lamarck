@@ -159,6 +159,7 @@ class GA(object):
             if monos[1] > monos[0]: # In alphabetical order
                 monos = [monos[1], monos[0]]
             directions = randomdirs(monos, self.length)
+
             dimerunits.append((monos, directions[0], directions[1]))
         self.pop = dimerunits
         self.logpop(self.pop)
@@ -192,9 +193,14 @@ class GA(object):
         for j, x in enumerate(self.gjforder):
             self.log("GJF %d: polymer numbers %s" % (j, self.gjfs[x]))
 
+    # def logcomb(self):
+    #      self.log("%s is the sequence" % len(comb))
+    #      for j, x in enumerate(self.comb):
+    #          self.log("%d sequence %s" % (j, self.comb[x]))
+
     def logfitness(self, pop, text):
         self.log("\t%s population fitness" % text)
-        for j, x in enumerate(sorted(pop, key = lambda x: self.getscore(polname(x)), reverse=True)):
+        for j, x in enumerate(sorted(pop, key=lambda x: self.getscore(polname(x)), reverse=True)):
             score, logtext = self.getscore(polname(x), log=True)
             if score is not None:
                 self.log("%d: %s with %.3f %s" % (j, polname(x), score, logtext))
@@ -265,28 +271,14 @@ class GA(object):
             self.log("\tExtracting data from log files")
             tostore = []
             for j, pname in enumerate(self.gjforder):
+
+                print 'on pname=%s, j=%s' % (pname, j)
+
                 mylogfile = os.path.join("gaussian", "%d.out.gz" % j)
                 if not os.path.isfile(mylogfile):
                     continue
-                text = gzip.open(mylogfile, "r").read()
-                if text.find("Excitation energies and oscillator strength") < 0:
-                    continue
-                lines = iter(text.split("\n"))
-                for line in lines:
-                    if line.startswith(" #T PM6 OPT"):
-                        line = lines.next()
-                        line = lines.next()
-                        line = lines.next()
-                        break
-                for line in lines:
-                    if line.startswith(" Initial command"): break
-                zindofile = list(lines)
-                if len(zindofile) == 0:
-                    # All the PM6 data is missing
-                    continue
-                with open("tmp.out", "w") as f:
-                     f.write("\n".join(zindofile))
-                logfile = ccopen("tmp.out")
+                #logfile = ccopen("tmp.out")
+                logfile = ccopen(mylogfile)
                 logfile.logger.setLevel(logging.ERROR)
                 try:
                     data = logfile.parse()
@@ -302,10 +294,11 @@ class GA(object):
                 if max(etens) <= 0:
                     continue
 
-                myjson = json.dumps([homo, lumo, etens, etoscs.tolist()])
+                #myjson = json.dumps([homo, lumo, etens, etoscs.tolist()])
                 # adds JSON with HOMO, LUMO, electronic transition energies, et oscillator strengths
                 # and then all the MO energies
-               # myjson = json.dumps([homo, lumo, etens, etoscs, data.moenergies[0], data.homos[0]])
+
+                myjson = json.dumps([float(homo), float(lumo), etens, list(etoscs), list(data.moenergies[0]), int(data.homos[0])])
                 tostore.append((pname, myjson))
 
             for pname, myjson in tostore:

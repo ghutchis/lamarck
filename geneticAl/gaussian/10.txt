@@ -1,1 +1,0 @@
-c(s1)c(O)c(C(=O)O)c1~c(s1)c(C#N)c(C(F)(F)F)c1_0_8
