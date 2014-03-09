@@ -10,7 +10,8 @@ import json as simplejson
 # both assymmetric, first monomer is symmetric, second monomer is symmetric and both are symmetric. To use the file, change the monomer
 # length to the desired length and then copy the output to the directions.json file
 
-# Still need to get the json write section to write. Now it writes only one line.
+#TODO In order to get the pairwise combinations to form given combinations, there are repeats (ie: AAAAAA, etc). Does this need to be changed so that the likelihood of picking a given combination is the same?
+
 
 datafile = open(sys.argv[1])
 
@@ -19,7 +20,7 @@ for line in datafile.readlines():
     #name = "line" + line.split()[1] + line.split()[3]
     donor = line.split()[0]
     acceptor = line.split()[1]
-    length = 4
+    length = 6
     mon1 = 'D'
     mon2 = 'A'
 
