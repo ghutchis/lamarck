@@ -168,7 +168,6 @@ def get_comb(molname, length):
     combinations = _readdatafiles()
     parts, d1, d2 = molname.split("_")
     comb = combinations[length][int(d1)][int(d2)]
-
     b = parts.split("~") # monos
 
     return comb, b

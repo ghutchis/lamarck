@@ -193,11 +193,6 @@ class GA(object):
         for j, x in enumerate(self.gjforder):
             self.log("GJF %d: polymer numbers %s" % (j, self.gjfs[x]))
 
-    # def logcomb(self):
-    #      self.log("%s is the sequence" % len(comb))
-    #      for j, x in enumerate(self.comb):
-    #          self.log("%d sequence %s" % (j, self.comb[x]))
-
     def logfitness(self, pop, text):
         self.log("\t%s population fitness" % text)
         for j, x in enumerate(sorted(pop, key=lambda x: self.getscore(polname(x)), reverse=True)):
@@ -302,9 +297,13 @@ class GA(object):
                 tostore.append((pname, myjson))
 
             for pname, myjson in tostore:
-                # get the monomer name
+                # get the sequence
                 output = get_comb(pname, self.length)
-                self.admin.storedata(pname, self.gen, output[0], myjson)
+                seq = output[0]
+                # chain the .replace(old, new) function to replace id with A, di with B, uq with D, qu with E
+                seqSym = seq.replace("(qu)", "A").replace("(uq)", "B").replace(
+                         "(di)", "D").replace("(id)", "E")
+                self.admin.storedata(pname, self.gen, seqSym, myjson)
 
     def getscore(self, polname, log=False):
         data = self.admin.getdata(polname)
