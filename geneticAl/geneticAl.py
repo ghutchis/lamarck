@@ -256,9 +256,11 @@ class GA(object):
                 filename = os.path.join("gaussian", "%d.out.gz" % i)
                 if os.path.isfile(filename):
                     os.remove(filename)
-                # run g09 as a subprocess
-                g09 = subprocess.call("(cd gaussian; g09 %d.gjf %d.out)" % (i,i), shell=True)
+                # run g09 as a subprocess on my computer
+                #g09 = subprocess.call("(cd gaussian; g09 %d.gjf %d.out)" % (i,i), shell=True)
 
+                # run g09 as a subprocess on the cluster
+                g09 = subprocess.call("(cd gaussian; runGaussian.sh %d.gjf %d.out)" % (i,i), shell=True)
             gzCmd = subprocess.call("(cd gaussian; gzip *.out)", shell=True)
 
     def extractcalcdata(self):
