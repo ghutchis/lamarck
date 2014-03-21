@@ -1,7 +1,7 @@
 Running the Genetic Algorithm
 =============================
 
-1. Creat a similarity matrix from the monomers of interest which will be used in the geneticAl.py script to use
+1. Create a similarity matrix from the monomers of interest which will be used in the geneticAl.py script to use
     the monomers of interest in the study. (These files are stored in the dims_and_tets folder):
 
     a. Create homopolymers of length 4 for each monomer of interest
