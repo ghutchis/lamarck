@@ -93,7 +93,7 @@ def makefiles(filename, folder, length, repunit = 1):
     sdf = pybel.Outputfile("sdf", os.path.join(folder, os.path.basename(folder) + ".sdf"), overwrite=True)
     for i, smile in enumerate(smiles):
         print i, str(smile)
-        print >> info, str(smile)
+        print >> info, i, str(smile)
         mol = pybel.readstring("smi", smile)
         globalopt(mol)
         gaussian = (header + "\n\n" + smile + "\n" + 
