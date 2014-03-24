@@ -9,42 +9,41 @@ from cclib.parser import ccopen, utils
 import pybel
 
 def extractdata(folder):
-    smiles = [x.rstrip() for x in open(os.path.join(folder, "%s.txt" % folder), "r").readlines()]
+    smiles = [x.rstrip() for x in open(os.path.join(folder, os.path.basename(folder) + ".txt"), "r").readlines()]
+    print smiles
     archivefile = open(os.path.join(folder, "zindo.txt"), "w")
     print >> archivefile, "\t".join(["File ID", "SMILES", "HOMO (eV)", "LUMO (eV)",
                "Trans (eV)", "Osc", "..."])
-    getnum = lambda x: int(x.split("\\")[1].split(".")[0])
+    #getnum = lambda x: int(x.split("\\")[1].split(".")[0])
+    getnum = lambda x: int(x.split("/")[1].split(".")[0])
     homos = []
     lumos = []
     trans = []
     convert = 1.0 / utils.convertor(1, "eV", "cm-1")
-    for filename in sorted(glob.glob(os.path.join(folder, "*.out*")),
+    for filename in sorted(glob.glob(os.path.join(folder, "*.gz")),
                            key=getnum):
         number = getnum(filename)
 
         smile = smiles[number]
+        text = gzip.open(filename, "r").read()
 
-        if filename.endswith(".gz"):
-            text = gzip.open(filename, "r").read()
-        else:
-            text = open(filename, "r").read()
         if text.find("Excitation energies and oscillator strength") < 0:
             continue
         lines = iter(text.split("\n"))
-        for line in lines:
-            if line.startswith(" #T PM6 OPT"): 
-                line = lines.next()
-                line = lines.next()
-                line = lines.next()
-                break
-        if len(line) == 0:
-            print filename, "has some problems"
-            continue
-        print line, smile
+        # for line in lines:
+        #     if line.startswith(" #T PM6 OPT"):
+        #         line = lines.next()
+        #         line = lines.next()
+        #         line = lines.next()
+        #         break
+        # if len(line) == 0:
+        #     print filename, "has some probs"
+        #     continue
+        #print line, smile
         for line in lines:
             if line.startswith(" Initial command"): break
         text = StringIO.StringIO("\n".join(list(lines)))
-        
+
         logfile = ccopen(text)
         logfile.logger.setLevel(logging.ERROR)
         data = logfile.parse()
@@ -62,7 +61,7 @@ def extractdata(folder):
         archivefile.write("\n")
 ##        print >> open("tmp.txt", "w"), text.getvalue()
         if smile != "c(s1)c(SN=N2)c2c1c(s1)c(SN=N2)c2c1c(s1)c(SN=N2)c2c1c(s1)c(SN=N2)c2c1c(s1)c(SN=N2)c2c1c(s1)c(SN=N2)c2c1":
-            mol = pybel.readstring("g09", text.getvalue())
+            mol = pybel.readstring('g09', text.getvalue())
             mol.write("xyz", os.path.join(folder, "%d.xyz" % number), overwrite=True)
 
     print "%s: Created zindo.txt, plus various xyz files." % folder
