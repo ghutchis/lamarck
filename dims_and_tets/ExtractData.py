@@ -14,7 +14,7 @@ def extractdata(folder):
     archivefile = open(os.path.join(folder, "zindo.txt"), "w")
     print >> archivefile, "\t".join(["File ID", "SMILES", "HOMO (eV)", "LUMO (eV)",
                "Trans (eV)", "Osc", "..."])
-    #getnum = lambda x: int(x.split("\\")[1].split(".")[0])
+
     getnum = lambda x: int(x.split("/")[1].split(".")[0])
     homos = []
     lumos = []
@@ -22,24 +22,15 @@ def extractdata(folder):
     convert = 1.0 / utils.convertor(1, "eV", "cm-1")
     for filename in sorted(glob.glob(os.path.join(folder, "*.gz")),
                            key=getnum):
-        number = getnum(filename)
 
+        number = getnum(filename)
         smile = smiles[number]
         text = gzip.open(filename, "r").read()
 
         if text.find("Excitation energies and oscillator strength") < 0:
             continue
         lines = iter(text.split("\n"))
-        # for line in lines:
-        #     if line.startswith(" #T PM6 OPT"):
-        #         line = lines.next()
-        #         line = lines.next()
-        #         line = lines.next()
-        #         break
-        # if len(line) == 0:
-        #     print filename, "has some probs"
-        #     continue
-        #print line, smile
+
         for line in lines:
             if line.startswith(" Initial command"): break
         text = StringIO.StringIO("\n".join(list(lines)))

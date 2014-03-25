@@ -10,9 +10,9 @@ def getdata(folder):
     data = []
     for line in input:
         broken = line.split()
-        id, smile, homo, lumo = broken[:4]
+        file, id, smile, homo, lumo = broken[:5]
         homo, lumo = float(homo), float(lumo)
-        trans = map(float, broken[4:])
+        trans = map(float, broken[5:])
         etenergy = []
         osc = []
         for i in range(0, len(trans), 2):
