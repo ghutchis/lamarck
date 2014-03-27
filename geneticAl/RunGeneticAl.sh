@@ -13,13 +13,17 @@
 
 source /etc/profile
 
+#set up python and g09 environments
 export PYTHONPATH=$PYTHONPATH:/nfs/Users/ilanakanal/screeningproject/geneticAl
 export PYTHONPATH=$PYTHONPATH:/nfs/Users/ilanakanal/local/lib/python2.7/site-packages
+export g09root=/usr/local
+export GAUSS_SRCDIR=${SCRATCH}
+. $g09root/g09/bsd/g09.profile
 
-INPUT=sim.inp
+# INPUT=?
 WORK=`pwd`
 EXE=/nfs/Users/ilanakanal/screeningproject/geneticAl/geneticAl.py
-SCRATCH=/scratch/${USER}/screeningproject
+SCRATCH=/scratch/${USER}/${JOB_ID}
 
 # Set up the scratch directory if needed
 if [ -d /scratch/${USER} ]; then
