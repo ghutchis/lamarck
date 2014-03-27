@@ -1,36 +1,44 @@
 #!/bin/sh
+#$ -S /bin/bash
+#$ -R y
+#$ -pe mpi 4
+#$ -o result.stdout
+#$ -e result.stderr
+#$ -cwd
 
 #Simple script to submit genetic algorithm to the Sun Grid Engine
 #Change the output file name before each run. If the output file name already exists, the text output file won't be saved.
 #Seed, length, number in the population (N), matrix nbrs and objective can also be changed as needed
 
-# Force SGE to use bash
-#$ -S /bin/bash
-#$ -R y
-#$ -pe mpi 4
 
-# Take the first argument of the script
-INPUT=$1
-BASE=$2
+source /etc/profile
+
+export PYTHONPATH=$PYTHONPATH:/nfs/Users/ilanakanal/screeningproject/geneticAl
+export PYTHONPATH=$PYTHONPATH:/nfs/Users/ilanakanal/local/lib/python2.7/site-packages
+
+INPUT=sim.inp
+WORK=`pwd`
+EXE=/nfs/Users/ilanakanal/screeningproject/geneticAl/geneticAl.py
 SCRATCH=/scratch/${USER}/${JOB_ID}
 
 # Set up the scratch directory if needed
 if [ -d /scratch/${USER} ]; then
-  touch /scratch/${USER}
+ touch /scratch/${USER}
 else
-  mkdir /scratch/${USER}
+ mkdir /scratch/${USER}
 fi
+
 mkdir ${SCRATCH}
 
 # Now copy the file into scratch
-cd $BASE
 if [ -f ${INPUT} ]; then
-  # also copy any fchk or chk file with the same name
-  cp ${INPUT%%.py}.* ${SCRATCH}
-  cp ${INPUT%%.gjf}.* ${SCRATCH}
+ cp -r ./* ${SCRATCH}
 else
-  exit
+exit
 fi
 
+cd ${SCRATCH}
+python $EXE -d output/March_27_1 --seed=1 --length=6 -N 64 --matrix=mostsim4.json --nbrs=7 --objective=distance
 
-qsub -N python  geneticAl.py -d output/Run3_18_1 --seed=1 --length=6 -N 6 --matrix=mostsim4.json --nbrs=7 --objective=distance
+
+cp -r ${SCRATCH}/* ${WORK}
