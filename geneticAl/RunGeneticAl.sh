@@ -19,7 +19,7 @@ export PYTHONPATH=$PYTHONPATH:/nfs/Users/ilanakanal/local/lib/python2.7/site-pac
 INPUT=sim.inp
 WORK=`pwd`
 EXE=/nfs/Users/ilanakanal/screeningproject/geneticAl/geneticAl.py
-SCRATCH=/scratch/${USER}/${JOB_ID}
+SCRATCH=/scratch/${USER}/screeningproject
 
 # Set up the scratch directory if needed
 if [ -d /scratch/${USER} ]; then
