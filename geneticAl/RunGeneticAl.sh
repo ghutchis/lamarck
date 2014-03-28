@@ -7,7 +7,8 @@
 #$ -cwd
 
 #Simple script to submit genetic algorithm to the Sun Grid Engine
-#Change the output file name before each run. If the output file name already exists, the text output file won't be saved.
+#Output file name should be specified when call this to run. If the output file name already exists, the text output
+#file won't be saved.
 #Seed, length, number in the population (N), matrix nbrs and objective can also be changed as needed
 
 
@@ -20,7 +21,7 @@ export g09root=/usr/local
 export GAUSS_SRCDIR=${SCRATCH}
 . $g09root/g09/bsd/g09.profile
 
-# INPUT=?
+INPUT=$1
 WORK=`pwd`
 EXE=/nfs/Users/ilanakanal/screeningproject/geneticAl/geneticAl.py
 SCRATCH=/scratch/${USER}/${JOB_ID}
@@ -42,7 +43,7 @@ exit
 fi
 
 cd ${SCRATCH}
-python $EXE -d output/March_27_1 --seed=1 --length=6 -N 64 --matrix=mostsim4.json --nbrs=7 --objective=distance
+python $EXE -d output/{INPUT} --seed=1 --length=4 -N 6 --matrix=mostsim4.json --nbrs=7 --objective=distance
 
 
 cp -r ${SCRATCH}/* ${WORK}
