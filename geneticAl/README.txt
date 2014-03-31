@@ -1,6 +1,6 @@
 Running the Genetic Algorithm
 =============================
-0. Make a library of monomers:
+0. Make a library of monomers to include in the screening:
     a. The library should be a txt file with one monomer per line, such as shown:
         c(s1)c(S(=O)(=O)C=C2)c2c1
         c(s1)c(OCCCO2)c2c1
@@ -8,8 +8,8 @@ Running the Genetic Algorithm
         c(c(nsn1)c12)ccc2
         c(s1)c(SC=CS2)c2c1
             etc.....
-    b. Generate gaussian input files (using input.py file and specify calculation type in the header) and run gaussian
-        calcuations for each monomer.
+    b. Generate gaussian input files for homotetramers (using input.py file and specify calculation type in the header)
+        and run gaussian calcuations for each monomer.
 
     c. Find all cations to determine the probable polymerization sites.
         1) Cations are created by changing the line of code which says 0 1 to 1 2 which means the charge is now 1.
