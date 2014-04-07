@@ -1,0 +1,17 @@
+1. Determine how much the top 25 monomer list changes with different random seed after 100 generations for the 131
+    monomer list.
+    a. Run  jobs each with 64 chromosomes and a different seed.
+    b. After 100 generations, determine list of monomers which appear and/or how many times they appear per list.
+        list of(smiles, x frequency)
+    c. Look at the similarity between the lists. Hopefully the list of top monomers will be similar.
+        def similarity[list1, list2, etc.]
+    d. How many generations does it take to get to the list of top monomers with the same seed and different seeds?
+        (Hopefully these will be similar and will help to understand how many generations must be run with 131 monomers.
+        When we increase to ~300 monomers, we can then see how this changes which will help predict how many generation/
+        chromosomes should be used when scaling to larger data sets.)
+
+2. Figure out the best predictors of good efficiency
+    a. Already stored in json file, which can easily be analyzed:
+        myjson = json.dumps([float(homo), float(lumo), etens, list(etoscs), list(data.moenergies[0]), int(data.homos[0])])
+    b. Complete analysis of x (distance from most efficient LUMO) compared to Monomer A HOMO, Monomer A LUMO, Huckel
+        sequence effect, etc.
