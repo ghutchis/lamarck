@@ -2,7 +2,6 @@
 .idea/*
 *.pyc
 *.pyo
-*.txt
 *.db
 *.rwf
 *.int
@@ -16,3 +15,4 @@
 *.com
 *.sdf
 *.xyz
+*/output/*

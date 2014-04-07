@@ -1,10 +1,9 @@
 __author__ = 'ilanakanal'
 #!/usr/bin/python
 import sys
-import json as simplejson
 import numpy as np
 import subprocess
-from collections import Counter
+
 
 
 # get number of lines in a file
