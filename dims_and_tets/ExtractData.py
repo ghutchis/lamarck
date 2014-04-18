@@ -39,7 +39,7 @@ def extractdata(folder):
         logfile.logger.setLevel(logging.ERROR)
         data = logfile.parse()
 
-        assert(len(data.homos) == 1)
+        #assert(len(data.homos) == 1)
         smiles.append(smile)
         homo = data.homos[0]
         homos.append(data.moenergies[0][homo])

@@ -1,7 +1,9 @@
 Running the Genetic Algorithm
 =============================
 1. Make a library of monomers to include in the screening:
-    a. The library should be a txt file with one monomer per line, such as shown:
+    a. The library should be a txt file with one monomer per line with the beginning and ending letters of the
+        code being the polymerization sites so that when the string is placed beside itself 4-8 times (tetramers-octomers)
+        the SMILES do not produce errors. An example list is shown here:
         c(s1)c(S(=O)(=O)C=C2)c2c1
         c(s1)c(OCCCO2)c2c1
         c(o1)nnc1

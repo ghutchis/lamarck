@@ -60,7 +60,7 @@ def getmonomers(filename, debug=False):
     The number of monomers is 142
     """
     inputfile = filename
-    exclude = ["se", "p", "Si", "b", "C1=CC(C2=O)=C(C1=O)C=C2",
+    exclude = ["se", "p", "b", "C1=CC(C2=O)=C(C1=O)C=C2",
                "C(=C1)C=C1"]
     excluded = []
     monos = []
@@ -71,6 +71,8 @@ def getmonomers(filename, debug=False):
             monos.append(smile.rstrip())
     oldlen = len(monos)
     monos = set(monos)
+    print monos
+
     if debug:
         print "".join(excluded)
         print "%d duplicates removed" % (oldlen - len(monos))
