@@ -64,3 +64,8 @@ Running the Genetic Algorithm
     d. Once this calculation has run, it can be repeated almost exactly by appending the --no-gaussian option,
         which uses cached values instead of rerunning the Gaussian calculations. (It may not be exactly the same as
         some failed calculations may have later succeeded.)
+
+    e. To submit a job to the Hutchison clusher:
+        1. Adjust the keywords in the runGeneticAl.sh file
+        2. Type: qsub -N <job name>  /Volumes/Users/ilanakanal/screeningproject/geneticAl/RunGeneticAl.sh
+        2. Type: qsub -N <job name>  /Volumes/Users/ilanakanal/screeningproject/geneticAl/RunGeneticAl.sh
