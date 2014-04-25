@@ -26,7 +26,7 @@ def get_num_generations(f):
 
 # datafile format is .db from geneticAl.py saved as a .txt file with the header line removed
 dataFile = sys.argv[1]
-monomerFile = "/Users/ilanakanal/Code/screeningproject/monomers-131.txt"
+monomerFile = "/Users/ilanakanal/Code/screeningproject/monomers-300b.txt"
 
 rows = int(file_len(monomerFile))
 cols = int(get_num_generations(dataFile)) + 1  # generations start at 0
@@ -35,6 +35,10 @@ monomerCounts = np.zeros((rows, cols))
 dataSet = open(dataFile)
 monomerSet = open(monomerFile).read().splitlines()
 
+for n, smile in monomerSet:
+    monomerSet(n) = smile.strip()
+
+print monomerSet
 for line in dataSet.readlines():
     # pull the two smiles
     smiles = line.split("_")[0][1:].split("~")
@@ -50,6 +54,6 @@ np.savetxt("stuff.csv", monomerCounts, delimiter=",")
 
 print("""
 The output is saved as stuff.csv. THERE ARE NO ROW LABELS; simply add a column at the beginning
-with the contents of monomerfile-131.txt. The output data is unsorted. Sum across the rows and
+with the contents of monomerfile-300b.txt. The output data is unsorted. Sum across the rows and
 sort descending to see most common monomers.
 """)
