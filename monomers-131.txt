@@ -46,7 +46,7 @@ c(s1)c(C(=O)C=C2)c2c1
 c1oc(c2)c(c1)oc2
 c(s1)c(CCCC2)c2c1
 C#CC#C
-c(s1)cc(OC)c1cd
+c(s1)cc(OC)c1
 c(s1)c(SC=C2)c2c1
 c(s1)cc(c12)scc2
 c([nH]1)ccc1C#C

@@ -35,10 +35,6 @@ monomerCounts = np.zeros((rows, cols))
 dataSet = open(dataFile)
 monomerSet = open(monomerFile).read().splitlines()
 
-for n, smile in monomerSet:
-    monomerSet(n) = smile.strip()
-
-print monomerSet
 for line in dataSet.readlines():
     # pull the two smiles
     smiles = line.split("_")[0][1:].split("~")
@@ -50,7 +46,7 @@ for line in dataSet.readlines():
         monomerCounts[monomerSet.index(monomer), gen] += 1
 
 # save it out
-np.savetxt("stuff.csv", monomerCounts, delimiter=",")
+np.savetxt("stuff.csv", monomerCounts, fmt="%i", delimiter=",")
 
 print("""
 The output is saved as stuff.csv. THERE ARE NO ROW LABELS; simply add a column at the beginning
