@@ -68,3 +68,16 @@ Running the Genetic Algorithm
     e. To submit a job to the Hutchison clusher:
         1. Adjust the keywords in the runGeneticAl.sh file
         2. Type: qsub -N <job name>  /Volumes/Users/ilanakanal/screeningproject/geneticAl/RunGeneticAl.sh
+
+4. Processing data:
+    a. Open the desired .db file which can be found in the geneticAl/output folder using a SQL database browser.
+        Save file as a (csv) text file. Delete the top row (header row). SAVE this text file in:
+         geneticAl/Analysis_Phase2
+
+    b. Make sure TopMonomers.py file is calling the monomer list which was used to generate the data.
+        List must not have tabs in it or the analysis file will fail.
+
+    c. Run TopMonomers.py calling the text file generated in 4a. A file named stuff.csv is generated.
+
+    d. Open Excel. Paste list of monomers used to generate matrix in step 1. Import stuff.csv. Add across the rows.
+        Sort by last column from largest to smallest. Can use conditional formatting to see most common monomers used.
