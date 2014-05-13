@@ -348,8 +348,8 @@ The mutations should always allow the exploration of local space
         for chromo in self.pop:
             x = polname(chromo)
             scores.append((chromo, self.getscore(x)))
-# Original code was self.N / 5, but trying to change this to see if can sample a larger popluation.
-        poolsize = self.N / 12
+
+        poolsize = self.N / 5
         pool = []
         for i in range(poolsize):
             tournament = random.sample(scores, 3)
