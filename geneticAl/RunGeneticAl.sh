@@ -46,3 +46,31 @@ python $EXE -d output/March_31_2 --seed=2 --length=4 -N 6 --matrix=mostsim4.json
 
 
 cp -r ${SCRATCH}/* ${WORK}
+
+if [ `pwd` -ef ${SCRATCH} ]; then
+  rm *.gz
+fi
+FILENAME=${INPUT%%.com}
+g09 ${INPUT} ${FILENAME}.g09
+
+# Cleanup
+if [ -f ${FILENAME}.g09 ]; then
+  gzip -9 ${FILENAME}.g09
+  cp ${FILENAME}.g09.gz ${BASE}
+fi
+
+if [ -f ${FILENAME}.chk ]; then
+  formchk -3 ${FILENAME}.chk
+elif [ `echo *.chk` != '*.chk' ]; then
+  mv `echo *.chk` ${FILENAME}.chk
+  formchk -3 ${FILENAME}.chk
+fi
+
+if [ -f ${FILENAME}.fchk ]; then
+  gzip -9 ${FILENAME}.fchk
+  cp ${FILENAME}.fchk.gz ${BASE}
+fi
+
+# Don't delete scratch directory for now
+cd $BASE
+rm -rf ${SCRATCH}
