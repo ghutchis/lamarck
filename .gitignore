@@ -13,7 +13,5 @@
 *.out
 *.gjf
 *.com
-*.sdf
-*.xyz
 */output/*
-*.txt
+*.xyz
