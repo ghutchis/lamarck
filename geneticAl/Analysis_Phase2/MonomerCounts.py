@@ -6,14 +6,15 @@ from collections import Counter
 dataFile = sys.argv[1]
 dataSet = open(dataFile)
 
+all_monomers = []
+unique_moomers = []
+
 for line in dataSet.readlines():
     # pull the two smiles
-    smiles = line.split("_")[0].split("~")
+    smiles = line.split("\"")[1].split("_")[0].split("~")
     print smiles
+    all_monomers.append(smiles[0])
+    all_monomers.append(smiles[1])
 
-    #for item in smiles:
-     #   str = "-"
-      #  smilesList = str.join(smiles)
-       # print smilesList
-
-  #  for monomer in smiles:
+all_monomers.sort()
+print all_monomers
