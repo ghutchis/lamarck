@@ -22,8 +22,8 @@ unique_monos = Counter(all_monomers)
 unique_monos.most_common()
 
 file = open("MonomerCounts.txt", "w")
-#for key, count in unique_monos.iteritems():
-  #  file.write(key)
-  #  file.write(count)
 
-#file.close()
+for key, count in unique_monos.iteritems():
+  file.write("%s\t%i\n" % (key, count))
+
+file.close()
