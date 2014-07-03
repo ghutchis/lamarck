@@ -74,10 +74,9 @@ Running the Genetic Algorithm
         Save file as a (csv) text file. Delete the top row (header row). SAVE this text file in:
          geneticAl/Analysis_Phase2
 
-    b. Make sure TopMonomers.py file is calling the monomer list which was used to generate the data.
-        List must not have tabs in it or the analysis file will fail.
+    b. Run MonomerCounts.py script:
+            python MonomerCounts.py sys.arg[1] sys.arg[2]
+        Where sys.arg[1] is the file created in the previous step (ie. the database saves as a text file with the
+        header row removed) and sys.arg[2] is the output file name. I use the naming system monomerset_seedRun.txt
+        (ie. 300_4b.txt)
 
-    c. Run TopMonomers.py calling the text file generated in 4a. A file named stuff.csv is generated.
-
-    d. Open Excel. Paste list of monomers used to generate matrix in step 1. Import stuff.csv. Add across the rows.
-        Sort by last column from largest to smallest. Can use conditional formatting to see most common monomers used.
