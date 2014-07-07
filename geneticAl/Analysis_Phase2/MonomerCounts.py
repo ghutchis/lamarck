@@ -8,7 +8,6 @@ dataFile = sys.argv[1]
 dataSet = open(dataFile)
 
 all_monomers = []
-#unique_monomers = []
 
 for line in dataSet.readlines():
     # pull the two smiles
@@ -24,6 +23,6 @@ unique_monos.most_common()
 file = open(sys.argv[2], "w")
 
 for key, count in unique_monos.iteritems():
-  file.write("%s\t%i\n" % (key, count))
+    file.write("%s\t%i\n" % (key, count))
 
 file.close()
