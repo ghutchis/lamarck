@@ -68,6 +68,17 @@ Running the Genetic Algorithm
     e. To submit a job to the Hutchison clusher:
         1. Adjust the keywords in the runGeneticAl.sh file
         2. Type: qsub -N <job name>  /Volumes/Users/ilanakanal/screeningproject/geneticAl/RunGeneticAl.sh
+    f. To preselect the initial population, add a set of monomers from which the initial set should be chosen. In addition,
+        CHANGE:  monos = [random.choice(self.monomers) for j in range(2)]
+        TO:      monos = [random.choice(selected_initial_population) for j in range(2)]
+        and CHANGE:  def initallpop(self, chosen_monos=None):
+            TO:      def initallpop(self, chosen_monos=selected_initial_population):
+
+        When generating the list of monomers to be included in the selected_initial_population list, care must be taken
+         to make sure each monomer is in the similarity matrix which is used in the run (otherwise the next generation
+          will not be able to be generated and the program will fail.
+
+            Example: selected_initial_population = ['c(s1)c(cc(C#N)c(C#N)c2)c2c1','c(s1)c(C(=O)OC2(=O))c2c1']
 
 4. Processing data:
     a. Open the desired .db file which can be found in the geneticAl/output folder using a SQL database browser.
