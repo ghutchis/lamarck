@@ -115,7 +115,6 @@ chosen_monomers = {8: ['c(s1)c(OCCCO2)c2c1',
 #sure each monomer is in the similarity matrix which is used in the run (otherwise the next generation will not be able
 #to be generated and the program will fail.
 
-#selected_initial_population = ['c(s1)c(cc(C#N)c(C#N)c2)c2c1','c(s1)c(C(=O)OC2(=O))c2c1']
 
 def exitwitherror():
     sys.exit(__doc__)
@@ -136,6 +135,56 @@ def createAllCombinations(mymonos, length):
 
 
 class GA(object):
+    selected_initial_population = ['[CH]/C=C\\1/OCC[C](OCC1)', 'C\\1=C/O/C=C(/O/C=C/O/C=C/Oc2c(cccc2)O1)',
+                               'C=C(C)CN','C1=C(C=C/C/1=C\\1/C=CC(=C1)N)N',
+                                'C1=C(F)C=C/C/1=C\\1/C(=CC(=C1)F)', 'C1=C(N(=O)=O)C=C/C/1=C\\1/C=CC(N(=O)=O)=C1',
+                                'C1=C/C(/C(=C1)C#N)=C\\1/C=C(C=C1C#N)', 'C1=C/C(/C(=C1)F)=C\\1/C=C(C=C1F)',
+                                 'C1=C/C(/C(=C1)OC)=C\\1/C=C(C=C1OC)', 'C1=C2OCCSC2=C([S@@]1NC)',
+                                 'C1=CC(OC)=C(/C/1=C\\1/C=C(OC)C=C1)', 'C1=CC2=C(OC=CO2)/C/1=C/1\\C2=C(OC=CO2)C=C1',
+                                  'c1c([n]c2[CH]Sc12)', 'c1c(C(=O)C(F)(F)F)scc1', 'c1c2c(=O)oc(=O)c2c(c2c1c(=O)oc2=O)',
+                                   'c1c2c3c4c(c1CC)c(=O)[nH]c(=O)c4cc(CC)c3c(=O)n(c2=O)',
+                                   'c1cc2c(C=C/C/2=C\\2/C=Cc3c2cccc3)c(c1)', 'c1cnc(c2c1nsn2)', 'c1nnc(nn1)',
+                                    'c1sc(c(c1C(F)(F)F)C(F)(F)F)', 'c1sc(c(c1N(=O)=O)C#N)', 'c1sc(c2c1CCC[C@H]2N(=O)=O)',
+                                     'c1sc(S[CH2])c(c1)', 'C1SC[C@@H]2[C@H]1[C](O[C@@H]2[O])NCC',
+                                     'N1[C@H]2[C@H](N[C@@H]3[C@@H](CSC3)N2)N(S1)', 'N1[C@H]2CSC[C@H]2N(S1)',
+                                     'n1cc2c3c(c1)ccc1c3c(cc2)cn(c1)', 'N1N[C@H]2[C@@H](C)',
+                                     '[C@@H]3[C@@H](NSN3)[C@H](C)[C@H]2N1', 'C1=C[C@@H]2[C@H](C1)[C@@H]1[C@@H](C=CC1)C2=C',
+                                      'C1=CC=C(S1(=O)=O)', 'c1c(C)cc(c(c1)C)', 'c1c(C#N)sc(OC)c1', 'c1c(ncc2c1non2)',
+                                       'c1c2c(=O)n(c(=O)c2cc2c1c(=O)[nH]c2=O)', 'c1cc(C)cc(c1C)', 'c1cc(N(=O)=O)c(cc1)',
+                                        'c1ccc2c(c1)C(=O)c1c2ccc(c1)', 'c1cccc2c1N(C)C(=O)[C]2[C]1C(=O)N(C)c2cc(ccc12)',
+                                         'c1cscc1C(=O)O', 'c1oc(c(c1C#N)C#N)', 'C1S[C]2[C]3SCC[C@@H]3C(=C(CN)CN)[C@H]2C1',
+                                          'C1S[C]2[C]3SCC[C@@H]3C(=O)[C@H]2C1', 'c1sc(c(c1C#N)C#N)', 'c1sc(c(c1O)C#N)',
+                                           'c1sc(c2c1[C@H](C(=O)C(F)(F)F)CCC2)', 'c1sc(c2c1C(=O)CC2=O)',
+                                            'c1sc(c2c1oc(=S)o2)', 'c1sc(nn1)', 'c1scc2c1C(=C[S@@]2[O])',
+                                            'N1C(=O)[C](c2c1cc(cc2)C)[C]1C(=O)N(c2c1ccc(C)c2)', 'N1C(=S)C=C(C1=S)',
+                                             'Sc1cscc1S', '[C]1C(=O)Oc2c1cc1c(c2)[C](C(=O)O1)', 'C1=[S]C(=S)C2=C1C=C(S2(=O)=O)',
+                                              'C1=C(CC)C(CC)=C(S1(=O)=O)', 'C1=C2C(C(=O)N1)=C(OC2=O)', 'c1c(C(=O)C)scc1',
+                                               'c1c(F)cccc1', 'C1C[C@@H]2[C@@H](CC1)N(CC)[C@@H]1[C@@H](S2)CCCC1',
+                                                'c1c2c(=O)n(c(=O)c2cc2c1c(=O)sc2=O)', 'c1c2C(=O)OCc2ccc1',
+                                                'c1c2c(nccn2)c(c2c1nccn2)', 'c1c2nonc2c(cc1)', 'c1cc(c(cc1)N(c1ccccc1)c1ccccc1)',
+                                                 'c1oc(c(c1C#N)C(F)(F)F)', 'C1Oc2cscc2OC(C1=O)', 'c1sc(C(F)(F)F)cc1',
+                                                  'c1sc(c2c1[CH][N]2)', 'c1sc(c2c1C(=O)NC2=O)', 'c1sc(c2c1CC(=O)C(=O)C2)',
+                                                   'c1sc(c2c1oc(=O)c(=O)s2)', 'C1SC[C@@H]2[C@@]1(S)C[C@H](OC)[C@@H](OC)C2',
+                                                    'c1sc2cc(C(=O)O)sc2c1', 'c1scc(N(=O)=O)c1N', 'C1SCN2[C@H]1NCC2',
+                                                     'N1[C@]2(SC)CSC[C@H]2NC(=C1)', 'N1[C@@H]2C[C@@H]3NSN[C@@H]3C[C@@H]2N(S1)',
+                                                      'N1c2cscc2N(CC(=O)C1)',
+                                                       'c1[n]c2c(c(=O)c3c2[n]cc3)c1', 'c1[nH]cc2c1S(=O)(=O)C(=C2)',
+                                                        'C1=[S]C(=O)C2=C1C(=O)[S]=C2', 'C1=CC(=C2[C@H]1CCS2)',
+                                                         'C1=CC=C(C1=S)', 'c1c([CH2])c(c2c1ccsc2)', 'c1c(C(F)(F)F)sc(C#N)c1',
+                                                          'c1c(F)c(F)c(c(c1F)F)', 'c1c(F)sc(F)c1', 'c1c(O)sc2c1[nH]c1c2sc(c1)',
+                                                           'c1c(OC)c(cc(c1)OC)', 'c1c2[CH][S]([CH2])[CH]c2c(cc1)',
+                                                           'c1c2c(=O)n(c(=O)c2cc2c1c(=O)oc2=O)', 'c1c2c(ncc(C)n2)c(s1)',
+                                                            'c1cc2c(=O)n(C)c(=O)c3c2c2c1C1=C4[C@@H](c2cc3)C=CC2=C4[C@@H](C(=O)N(C2=O)C)C(=C1)',
+                                                            'c1cc2c(s1)c1c(c(=O)[nH]c2=O)cc(s1)', 'c1coc(N(=O)=O)c1', 'c1oc(c(c1)N(=O)=O)',
+                                                            'c1oc2c(c1)C(=O)c1c2sc(c1)', 'C1S[C@@H]2[C@@H]1NCC2',
+                                                            'c1sc(C(=O)O)cc1O', 'c1sc(c(c1)C=O)', 'c1sc(c(c1)N(=O)=O)',
+                                                            'c1sc(c(c1C#N)C(F)(F)F)', 'c1sc(c2c1C[C@H](N)[C@@H](N(=O)=O)C2)',
+                                                            'c1sc(c2c1C=[S]C=C2)', 'c1sc(c2c1nc(OCC)c(CN)n2)',
+                                                            'c1sc(c2c1nc1c3ccccc3c3ccccc3c1n2)', 'c1sc(c2c1nc1c3sccc3c3ccsc3c1n2)',
+                                                            'c1sc(c2c1oc(N(=O)=O)c2)', 'c1sc(c2c1sc(=O)s2)', 'c1sc(c2c1sc(N(=O)=O)c2)',
+                                                            'c1sc(c2c1SCCS2)', 'c1scc2c1C(=[S@@](OC)C(=C2)OC)', 'N(CC)c1ccc(c(c1)C=C)N(CC)',
+                                                            'N1CN[C@@H]2[C@H]1N(CN2)', 'N1CN[C@@H]2C[C@H]3[C@@H](C[C@H]12)N(CN3)']
+
     def __init__(self, admin, length, Nchromos, R, simmatrix, objectivefn,
                  logmessage=""):
         self.admin = admin
@@ -164,18 +213,19 @@ class GA(object):
         dimerunits = []
         for i in range(self.N):
             dimerunit = [[], "", ""]
-            monos = [random.choice(self.monomers) for j in range(2)]
+            #monos = [random.choice(self.monomers) for j in range(2)]
+            monos = [random.choice(self.selected_initial_population) for j in range(2)]
             if monos[1] > monos[0]: # In alphabetical order
                 monos = [monos[1], monos[0]]
             directions = randomdirs(monos, self.length)
-
             dimerunits.append((monos, directions[0], directions[1]))
         self.pop = dimerunits
         self.logpop(self.pop)
 
-    def initallpop(self, chosen_monos=None):
+    def initallpop(self, chosen_monos=selected_initial_population):
         if chosen_monos is None:
-            chosen_monos = self.monomers
+           #chosen_monos = self.monomers
+            chosen_monos = self.selected_initial_popluation
         self.log("\tInitialising population")
         self.N = 0
 
