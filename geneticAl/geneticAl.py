@@ -213,8 +213,8 @@ class GA(object):
         dimerunits = []
         for i in range(self.N):
             dimerunit = [[], "", ""]
-            #monos = [random.choice(self.monomers) for j in range(2)]
-            monos = [random.choice(self.selected_initial_population) for j in range(2)]
+            monos = [random.choice(self.monomers) for j in range(2)]
+            #monos = [random.choice(self.selected_initial_population) for j in range(2)]
             if monos[1] > monos[0]: # In alphabetical order
                 monos = [monos[1], monos[0]]
             directions = randomdirs(monos, self.length)
@@ -222,10 +222,10 @@ class GA(object):
         self.pop = dimerunits
         self.logpop(self.pop)
 
-    def initallpop(self, chosen_monos=selected_initial_population):
+    def initallpop(self, chosen_monos=None):
         if chosen_monos is None:
-           #chosen_monos = self.monomers
-            chosen_monos = self.selected_initial_popluation
+           chosen_monos = self.monomers
+            #chosen_monos = self.selected_initial_popluation
         self.log("\tInitialising population")
         self.N = 0
 

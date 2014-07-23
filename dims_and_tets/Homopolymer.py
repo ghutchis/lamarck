@@ -71,6 +71,7 @@ def getmonomers(filename, debug=False):
             monos.append(smile.rstrip())
     oldlen = len(monos)
     monos = set(monos)
+    print excluded
     print monos
 
     if debug:

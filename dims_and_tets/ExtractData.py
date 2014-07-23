@@ -62,7 +62,7 @@ def showhelp():
   Usage: extractdata.py folder
 
          where folder contains the results of series of
-         calculation on homopolymers."""
+         gaussian calculations on homopolymers."""
     sys.exit(1)
 
 if __name__ == "__main__":

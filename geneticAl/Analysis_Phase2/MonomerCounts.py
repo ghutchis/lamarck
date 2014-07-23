@@ -3,7 +3,7 @@ import sys
 from collections import Counter
 
 
-# Convert .db file to text file.
+# Manually convert .db file to text file.
 dataFile = sys.argv[1]
 dataSet = open(dataFile)
 
