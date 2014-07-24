@@ -6,7 +6,7 @@ from optparse import OptionParser
 sys.path.append(os.path.join("..", "geneticAl"))
 #from Utils import globalopt
 
-header = "%%nproc=1\n%%mem=1GB\n%%Chk=%d.chk\n#T PM6 OPT"
+header = "%%nproc=1\n%%mem=1GB\n%%Chk=%d.chk\n#T PM6 OPT=(MaxCycles=500)"
 header_b = """
 --Link1--
 %%nproc=1
