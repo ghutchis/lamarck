@@ -29,7 +29,7 @@
 28 c1sc(c2c1S(=O)(=O)CCC2)c1sc(c2c1S(=O)(=O)CCC2)c1sc(c2c1S(=O)(=O)CCC2)c1sc(c2c1S(=O)(=O)CCC2)
 29 C1=C([CH]S1)C(=C)C1=C([CH]S1)C(=C)C1=C([CH]S1)C(=C)C1=C([CH]S1)C(=C)
 30 c1sc(c2c1CCC[C@H]2O)c1sc(c2c1CCC[C@H]2O)c1sc(c2c1CCC[C@H]2O)c1sc(c2c1CCC[C@H]2O)
-31 c1sc(c(c1OC[CH2])ON(=O)=O)c1sc(c(c1OC[CH2])ON(=O)=O)c1sc(c(c1OC[CH2])ON(=O)=O)c1sc(c(c1OC[CH2])ON(=O)=O)
+31 c1sc(c(c1OCC)ON(=O)=O)c1sc(c(c1OCC)ON(=O)=O)c1sc(c(c1OCC)ON(=O)=O)c1sc(c(c1OCC)ON(=O)=O)
 32 C([S@]1NCCC1)=CC([S@]1NCCC1)=CC([S@]1NCCC1)=CC([S@]1NCCC1)=C
 33 c1c(c2c(s1)[C@H]1[C@H](C2(CC)CC)CCS1)c1c(c2c(s1)[C@H]1[C@H](C2(CC)CC)CCS1)c1c(c2c(s1)[C@H]1[C@H](C2(CC)CC)CCS1)c1c(c2c(s1)[C@H]1[C@H](C2(CC)CC)CCS1)
 34 C1SC[C@@H]2[C@H]1[C](O[C@@H]2[O])NCCC1SC[C@@H]2[C@H]1[C](O[C@@H]2[O])NCCC1SC[C@@H]2[C@H]1[C](O[C@@H]2[O])NCCC1SC[C@@H]2[C@H]1[C](O[C@@H]2[O])NCC
@@ -42,7 +42,7 @@
 41 c1sc(c2c1sc(C(=O)CC)c2F)c1sc(c2c1sc(C(=O)CC)c2F)c1sc(c2c1sc(C(=O)CC)c2F)c1sc(c2c1sc(C(=O)CC)c2F)
 42 c1scc(OC)c1Nc1scc(OC)c1Nc1scc(OC)c1Nc1scc(OC)c1N
 43 C1=[S]c2cscc2[S]=C1C1=[S]c2cscc2[S]=C1C1=[S]c2cscc2[S]=C1C1=[S]c2cscc2[S]=C1
-44 C1C([O])CCC1C1C([O])CCC1C1C([O])CCC1C1C([O])CCC1
+44 c1ccc(o)c1c1ccc(o)c1c1ccc(o)c1c1ccc(o)c1
 45 c1sc(c2c1C(=O)c1ccccc1C2=O)c1sc(c2c1C(=O)c1ccccc1C2=O)c1sc(c2c1C(=O)c1ccccc1C2=O)c1sc(c2c1C(=O)c1ccccc1C2=O)
 46 C1=C(C=C/C/1=C\1/C=CC(=C1)N)NC1=C(C=C/C/1=C\1/C=CC(=C1)N)NC1=C(C=C/C/1=C\1/C=CC(=C1)N)NC1=C(C=C/C/1=C\1/C=CC(=C1)N)N
 47 c1sc(S[CH2])c(c1)c1sc(S[CH2])c(c1)c1sc(S[CH2])c(c1)c1sc(S[CH2])c(c1)
