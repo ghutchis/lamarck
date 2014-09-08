@@ -85,12 +85,15 @@ def makefiles(filename, folder, length, repunit = 1):
     monos = getmonomers(filename)
 
     smiles = []
+    monoinfo = open(os.path.join(folder, os.path.basename(folder) + "_mono.txt"), "w")
     for i, smile in enumerate(monos):
+        print >> monoinfo, i, str(smile)
         if repunit == 1:
             smiles.append( smile*length )
         elif repunit == 2:
             smiles.extend( ["%s%s" % (smile, x) * (length / repunit)
                             for x in monos[i+1:]])
+    monoinfo.close()
 
     info = open(os.path.join(folder, os.path.basename(folder) + ".txt"), "w")
     sdf = pybel.Outputfile("sdf", os.path.join(folder, os.path.basename(folder) + ".sdf"), overwrite=True)
