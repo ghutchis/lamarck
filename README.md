@@ -1,7 +1,8 @@
 Running the Genetic Algorithm
 =============================
 1. Make a library of monomers to include in the screening:
-    a. The library should be a txt file with one monomer per line with the beginning and ending letters of the
+    
+      a. The library should be a txt file with one monomer per line with the beginning and ending letters of the
         code being the polymerization sites so that when the string is placed beside itself 4-8 times (tetramers- octomers) the SMILES do not produce errors. An example list is shown here:
         c(s1)c(S(=O)(=O)C=C2)c2c1
         c(s1)c(OCCCO2)c2c1
@@ -9,12 +10,14 @@ Running the Genetic Algorithm
         c(c(nsn1)c12)ccc2
         c(s1)c(SC=CS2)c2c1
             etc.....
+    
     b. Generate gaussian input files for homotetramers (using input.py file and specify calculation type in the       header) and run gaussian calcuations for each monomer.
 
     c. Find all cations to determine the probable polymerization sites.
         1) TODO: Is this done with the g09catreorg.sh script on the server?
 
     d. Generate complete list on monomers with all possible polymerization sites included.
+
 
 2. Create a similarity matrix from the monomers of interest which will be used in the geneticAl.py script to use
     the monomers of interest in the study. This should be completed for each length of interest. The directions
