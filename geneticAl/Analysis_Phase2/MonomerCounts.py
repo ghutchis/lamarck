@@ -1,5 +1,6 @@
 #!/usr/bin/python
 import sys
+from string import Template
 from collections import Counter
 import numpy as np
 import scipy as sp
@@ -21,6 +22,7 @@ dataSet3 = open(dataFile3)
 all_monomers_1 = []
 all_monomers_2 = []
 MonomerKeys = {}
+Values_all_monomers_1 = []
 
 for line in dataSet1.readlines():
     # pull the two smiles
@@ -34,14 +36,14 @@ for line in dataSet2.readlines():
     all_monomers_2.append(smiles[0])
     all_monomers_2.append(smiles[1])
 
+# Generate dictionary with monomer key numbers (file names{numbers}) from making similarity matrix
+for line in dataSet3.readlines():
+    smiles = line.split(" ")[1].split("\n")[0]
+    key = line.split(" ")[0]
+    MonomerKeys[key] = smiles
+
 all_monomers_1.sort()
 all_monomers_2.sort()
-
-for line in dataSet3.readlines():
-    smiles = line.split(" ")[1].strip
-    key = line.split(" ")[0]
-    # Append to dictionary
-    #MonomerKeys.append(key, smiles)
 
 # Generates a list of unique monomers with the number of occurrances of that monomer (Ex: Monomer_A 5)
 unique_monos_1 = Counter(all_monomers_1)
@@ -50,8 +52,16 @@ unique_monos_1.most_common()
 unique_monos_2 = Counter(all_monomers_2)
 unique_monos_2.most_common()
 
-# From list of unique monomers, assign a numeric value to each monomer and save in all_monomers_numericKeys list
+#for line in all_monomers_1:
+#    for k,v in MonomerKeys.items():
+#        MonomerValues = line.replace(k,v)
 
+    #monomerValues = Template(all_monomers_1)
+    #monomerValues = string.substitute(MonomerKeys(string, key))
+#for item in all_monomers_1:
+#    monomerValue = item.substitute(MonomerKeys(smiles, key)
+#    print monomerValue
+#    Values_all_monomers_1.append(monomerValue)
 
 # Substitue number for SMILES in all_monomers
 
@@ -60,18 +70,21 @@ unique_monos_2.most_common()
 #sp.stats.spearmanr([all_monomers_1], [all_monomers_2])
 
 
-file = open(sys.argv[3], "w")
+file = open(sys.argv[4], "w")
 #for key in all_monomers_1:
 #    file.write("%s\n" % key)
 
-for key, count in unique_monos_1.iteritems():
-    file.write("%s\t%i\n" % (key, count))
+run = 1
 
-file = open(sys.argv[4], "w")
+for key, count in unique_monos_1.iteritems():
+    file.write("%i\t%s\t%i\n" % (run, key, count))
+
 #for key in all_monomers_2:
 #    file.write("%s\n" % key)
 
-for key, count in unique_monos_2.iteritems():
-    file.write("%s\t%i\n" % (key, count))
+run = 2
 
-#file.close()
+for key, count in unique_monos_2.iteritems():
+    file.write("%i\t%s\t%i\n" % (run, key, count))
+
+file.close()

@@ -309,7 +309,7 @@ c1sc2c(c1)C(C)(C)c1c2sc(c1)
 c1sc2c(c1)[Si](C)(C)c1c2sc(c1)
 c1sc2c(c1)[Si](CC)(CC)c1cc(sc21)
 c1sc2c(c1)[nH]c(c2)
-[C]1C=CC(=C1[CH2])
+c(c(C)1)ccc1
 c1csc2c1c(CC)c(CC)c1c(csc21)
 c1sc2c(c1)c1c(scc1)c(c2)
 c1sc2c(ccc3c2ccc2c3ccc3c2scc3)c1

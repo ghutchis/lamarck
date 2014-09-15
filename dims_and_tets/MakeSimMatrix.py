@@ -27,7 +27,7 @@ def makesimmatrix(folder, length):
     etenergies = []
 
     data = getdata(folder)
-    cutoff = 0.1
+    cutoff = 0.01
     newdata = {}
     for d in data:
         chosen = min([x for (x,y) in enumerate(d[OSC]) if y>=cutoff] + [999])
@@ -77,7 +77,7 @@ def makesimmatrix(folder, length):
             allval.update(v[:i])
         if len(mostsimilar) == len(allval) and found == -1:
             found = i
-##        print i, len(allval), len(mostsimilar), set(mostsimilar.keys()) - allval
+        print i, len(allval), len(mostsimilar), set(mostsimilar.keys()) - allval
     assert found != -1
     
     return mostsimilar, found
