@@ -26,6 +26,7 @@ Running the Genetic Algorithm
     a. Create homopolymers of length 4 for each monomer of interest
 
        mkdir myhomopolymers
+
        python Homopolymer.py -f ../polysmiles.txt  -d myhomopolymers -l 4
 
     b. Run the PM6+ZINDO Gaussian calculations
