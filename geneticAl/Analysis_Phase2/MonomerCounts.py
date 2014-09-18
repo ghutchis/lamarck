@@ -16,13 +16,8 @@ dataSet1 = open(dataFile1)
 dataFile2 = sys.argv[2]
 dataSet2 = open(dataFile2)
 
-dataFile3 = sys.argv[3]
-dataSet3 = open(dataFile3)
-
 all_monomers_1 = []
 all_monomers_2 = []
-MonomerKeys = {}
-Values_all_monomers_1 = []
 
 for line in dataSet1.readlines():
     # pull the two smiles
@@ -36,12 +31,6 @@ for line in dataSet2.readlines():
     all_monomers_2.append(smiles[0])
     all_monomers_2.append(smiles[1])
 
-# Generate dictionary with monomer key numbers (file names{numbers}) from making similarity matrix
-for line in dataSet3.readlines():
-    smiles = line.split(" ")[1].split("\n")[0]
-    key = line.split(" ")[0]
-    MonomerKeys[key] = smiles
-
 all_monomers_1.sort()
 all_monomers_2.sort()
 
@@ -52,35 +41,13 @@ unique_monos_1.most_common()
 unique_monos_2 = Counter(all_monomers_2)
 unique_monos_2.most_common()
 
-#for line in all_monomers_1:
-#    for k,v in MonomerKeys.items():
-#        MonomerValues = line.replace(k,v)
-
-    #monomerValues = Template(all_monomers_1)
-    #monomerValues = string.substitute(MonomerKeys(string, key))
-#for item in all_monomers_1:
-#    monomerValue = item.substitute(MonomerKeys(smiles, key)
-#    print monomerValue
-#    Values_all_monomers_1.append(monomerValue)
-
-# Substitue number for SMILES in all_monomers
-
-
-# Run spearmanr on the two lists of numbers; print (save) spearman values to be reported
-#sp.stats.spearmanr([all_monomers_1], [all_monomers_2])
-
-
+# Save the monomer frequencies to a file as defined when running the program
 file = open(sys.argv[4], "w")
-#for key in all_monomers_1:
-#    file.write("%s\n" % key)
 
 run = 1
 
 for key, count in unique_monos_1.iteritems():
     file.write("%i\t%s\t%i\n" % (run, key, count))
-
-#for key in all_monomers_2:
-#    file.write("%s\n" % key)
 
 run = 2
 
