@@ -42,7 +42,7 @@ unique_monos_2 = Counter(all_monomers_2)
 unique_monos_2.most_common()
 
 # Save the monomer frequencies to a file as defined when running the program
-file = open(sys.argv[4], "w")
+file = open(sys.argv[3], "w")
 
 run = 1
 
