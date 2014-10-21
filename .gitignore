@@ -15,3 +15,5 @@
 *.com
 */output/*
 *.xyz
+*.g09
+*.fchk
