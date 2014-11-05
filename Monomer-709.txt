@@ -2,7 +2,7 @@ C#CC#C
 C1=C/C(/C(=C1)OC)=C\1/C=C(C=C1OC)
 c(s1)c(C=C)cc1
 C=Cc1oc(c(c1O)O)C=C
-C=NNc1ccc(cc1)
+c(c1)c(N=NC)ccc1
 c1c(C)pc2c1pc(C)c2
 c1c(OCCC)c(cc(c1)OCCC)
 c1c2n(CCC)c3c(c2ccc1)cccc3
