@@ -27,7 +27,7 @@ def makesimmatrix(folder, length):
     etenergies = []
 
     data = getdata(folder)
-    cutoff = 0.01
+    cutoff = 1.0
     newdata = {}
     for d in data:
         chosen = min([x for (x,y) in enumerate(d[OSC]) if y>=cutoff] + [999])

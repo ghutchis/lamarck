@@ -60,8 +60,7 @@ def getmonomers(filename, debug=False):
     The number of monomers is 142
     """
     inputfile = filename
-    exclude = ["se", "p", "b", "C1=CC(C2=O)=C(C1=O)C=C2",
-               "C(=C1)C=C1"]
+    exclude = ["se"]
     excluded = []
     monos = []
     for smile in open(inputfile, "r"):
