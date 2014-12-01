@@ -51,7 +51,7 @@ C1Cc2c(S1)c1c(c(c2CC)CC)CCS1
 C1Cc2c([SiH2]1)c1c([nH]2)CC[SiH2]1
 C1Cc2c([SiH2]1)c1c(o2)CC[SiH2]1
 C1Cc2c([SiH2]1)c1c(s2)CC[SiH2]1
-C1=C/C(/[CH]C1=[BH2])=C\1/C=C(C(=[BH2])[CH]1)
+c(c([BH2])c1)cc1c(c([BH2])c1)cc1
 c1c([Si]c2ccccc2)cccc1
 c1c2c3c4c(c1CC)c(=O)[nH]c(=O)c4cc(CC)c3c(=O)n(c2=O)
 n1c(O)c2c3c(c1O)cc(CC)c1c3c(cc2CC)c(O)n(c1O)
