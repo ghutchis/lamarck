@@ -211,7 +211,6 @@ c1cc(c2c1[nH]cnc2)
 c1cc2c(C=C/C/2=C\2/C=Cc3c2cccc3)c(c1)
 c1cc2c(C(=O)N(C2=O)CC)cc1
 C#Cc1sc(cc1)C#C
-n1c2ccccc2n([se]1)
 c1ccc(c2c1nc(CC)c(CC)n2)
 c1ccc(c2c1nn(CC)n2)
 c1ccc(cc1)
@@ -354,7 +353,6 @@ c1sc(c(c1CC)CC)
 c1sc(c(c1CC)OCCS(O)(O)O)
 c1sc(c(c1F)F)
 c1sc(c(c1N(=O)=O)C#N)
-c1c[se]cc1
 c1scc(N(=O)=O)c1N
 c1sc(c(c1N(=O)=O)N(=O)=O)
 c1scc(N(O)O)c1N(O)O
