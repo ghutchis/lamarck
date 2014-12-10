@@ -102,7 +102,7 @@ def makefiles(filename, folder, length, repunit = 1):
         mol = pybel.readstring("smi", smile)
         globalopt(mol)
         gaussian = (header + "\n\n" + smile + "\n" + 
-                    "\n".join(mol.write("gau").replace("0  3\n", "0  1\n").replace("0  5\n", "0  1\n").split("\n")[3:])
+                    "\n".join(mol.write("gau").replace("0  3\n", "0  1\n").replace("0  5\n", "0  1\n").replace("0  9\n", "0  1\n").replace("0  17\n", "0  1\n").split("\n")[3:])
                     + header_b) % (i, i)
         with open(os.path.join(folder, "%d.com" % i), "w") as output:
             output.write(gaussian)

@@ -226,7 +226,7 @@ c1n(C)c(=O)c2c1c(=O)n(C)c2
 c1n(CC)c(cc1)
 c1n(CC)nc(c1CC)CC
 c1nc2c(c(=O)c3c2ncc3)c1
-c1c[n]c2c1c(=S)c1c2[n]cc1
+c1cnc2c1c(=S)c1c2ncc1
 c1nc2c(s1)[C@H]1[C@H](C2(CC)CC)N(CS1)
 c1nc2c(s1)c1c(c(c2CC)CC)N(CS1)
 c1c2c(ncs2)c(c2c1ncs2)
@@ -487,7 +487,7 @@ c(s1)c2ccs(N)(O)c2c1
 c1scc2c1C=C(S2(=O)=O)
 c1sc(c2c1S(=O)(=O)CCC2)
 c1sc(c2c1SC(=O)CC(=O)O2)
-C1=C(Oc2cscc2=[S]1)
+c1c(oc2cscc2s1)
 C1=[S]c2cscc2[S]=C1
 c1sc(c2c1SCC(=O)CO2)
 c1sc(c2c1SCC(=O)CS2)
@@ -525,7 +525,7 @@ c1sc(c2c1c(C(=O)O)ccc2O)
 c1sc(c2c1c(C(=O)OC)ccc2)
 c1sc(c2c1c(C(F)(F)F)ccc2)
 c1sc(c2c1c(C(F)(F)F)ccc2C#N)
-C1=C([S]=CS1)C=C
+c1SCSc1cc
 c1sc(c2c1c(C(F)(F)F)ccc2OC)
 c1sc(c2c1c(C)ccc2)
 c1sc(c2c1c(C)ccc2C)

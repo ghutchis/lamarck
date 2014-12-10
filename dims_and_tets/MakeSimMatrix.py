@@ -30,7 +30,8 @@ def makesimmatrix(folder, length):
     cutoff = 1.0
     newdata = {}
     for d in data:
-        chosen = min([x for (x,y) in enumerate(d[OSC]) if y>=cutoff] + [999])
+        chosen = 999
+        #chosen = min([x for (x,y) in enumerate(d[OSC]) if y>=cutoff] + [999])
         if chosen == 999:
             mymax = max(d[OSC])
             chosen = [x for (x,y) in enumerate(d[OSC]) if y==mymax][0]
