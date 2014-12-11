@@ -60,7 +60,7 @@ def getmonomers(filename, debug=False):
     The number of monomers is 142
     """
     inputfile = filename
-    exclude = ["se"]
+    exclude = ["se", "Si"]
     excluded = []
     monos = []
     for smile in open(inputfile, "r"):
