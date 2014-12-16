@@ -68,6 +68,8 @@ def getmonomers(filename, debug=False):
             excluded.append(smile)
         else:
             monos.append(smile.rstrip())
+            #monos.append(smile.rstrip() + 'C=C')
+            #monos.append(smile.rstrip() + 'C#C')
     oldlen = len(monos)
     monos = set(monos)
     print excluded
