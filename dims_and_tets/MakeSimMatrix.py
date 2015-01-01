@@ -30,11 +30,7 @@ def makesimmatrix(folder, length):
     cutoff = 1.0
     newdata = {}
     for d in data:
-        chosen = 999
-        #chosen = min([x for (x,y) in enumerate(d[OSC]) if y>=cutoff] + [999])
-        if chosen == 999:
-            mymax = max(d[OSC])
-            chosen = [x for (x,y) in enumerate(d[OSC]) if y==mymax][0]
+        # Take oligomer of length defined in input and find the monomer unit
         smile = d[SMILE][:(len(d[SMILE]) / length)]
         newdata[smile] = (d[LUMO], d[LUMO] - d[HOMO])
         
@@ -51,8 +47,7 @@ def makesimmatrix(folder, length):
             j = lookup[smile_b]
             e = newdata[smile_b]
             simmat[i][j] = math.sqrt((d[0] - e[0])**2 + (d[1]-e[1])**2)
-        mostsimilar[smile] = [y for x,y in sorted(zip(simmat[i], smiles))
-                              if y!=smile]
+        mostsimilar[smile] = [y for x, y in sorted(zip(simmat[i], smiles)) if y != smile]
     
     debug = False
     if debug:
@@ -72,13 +67,14 @@ def makesimmatrix(folder, length):
     # What is the smallest number of similar components
     # that includes all molecules
     found = -1
-    for i in range(5, 40):
+    for i in range(1, len(mostsimilar)):
         allval = set()
         for v in mostsimilar.values():
             allval.update(v[:i])
-        if len(mostsimilar) == len(allval) and found == -1:
+        print i, len(allval), len(mostsimilar), "{:.1%}".format(float(len(allval))/float(len(mostsimilar))), set(mostsimilar.keys()) - allval
+        if len(mostsimilar) == len(allval):
             found = i
-        print i, len(allval), len(mostsimilar), set(mostsimilar.keys()) - allval
+            break
     assert found != -1
     
     return mostsimilar, found
