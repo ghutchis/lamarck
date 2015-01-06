@@ -471,7 +471,7 @@ def doGA(admin, length, Nchromos, nbrs, simmatrix,
         ga.runGaussian()
         ga.extractcalcdata()
     ga.logfitness(ga.pop, "Initial")
-    for i in range(100):
+    for i in range(200):
         ga.makechildren(moverandomly)
         if not no_gaussian:
             ga.makeGJF(ga.children, length)
