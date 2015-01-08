@@ -31,6 +31,8 @@ from optparse import OptionParser
 relpath = os.sep.join(__file__.split(os.sep)[:-1])
 
 import json
+from json import encoder
+encoder.FLOAT_REPR = lambda o: format(o, '.3f')
 
 from cclib.parser import ccopen, utils
 import pybel
@@ -471,7 +473,7 @@ def doGA(admin, length, Nchromos, nbrs, simmatrix,
         ga.runGaussian()
         ga.extractcalcdata()
     ga.logfitness(ga.pop, "Initial")
-    for i in range(400):
+    for i in range(100):
         ga.makechildren(moverandomly)
         if not no_gaussian:
             ga.makeGJF(ga.children, length)
