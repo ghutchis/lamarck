@@ -356,7 +356,11 @@ class GA(object):
                 # adds JSON with HOMO, LUMO, electronic transition energies, et oscillator strengths
                 # and then all the MO energies
 
-                myjson = json.dumps([float(homo), float(lumo), etens, list(etoscs), list(data.moenergies[0]), int(data.homos[0])])
+                # File stores too much info for larger data set, so use other function (below) which saves fewer energies
+                #myjson = json.dumps([float(homo), float(lumo), etens, list(etoscs), list(data.moenergies[0]), int(data.homos[0])])
+                #tostore.append((pname, myjson))
+
+                myjson = json.dumps([float(homo), float(lumo), etens, list(etoscs)])
                 tostore.append((pname, myjson))
 
             for pname, myjson in tostore:
