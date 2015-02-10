@@ -31,8 +31,8 @@ from optparse import OptionParser
 relpath = os.sep.join(__file__.split(os.sep)[:-1])
 
 import json
-from json import encoder
-encoder.FLOAT_REPR = lambda o: format(o, '.3f')
+#from json import encoder
+#encoder.FLOAT_REPR = lambda o: format(o, '.3f')
 
 from cclib.parser import ccopen, utils
 import pybel
