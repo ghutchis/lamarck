@@ -360,8 +360,7 @@ class GA(object):
                 #myjson = json.dumps([float(homo), float(lumo), etens, list(etoscs), list(data.moenergies[0]), int(data.homos[0])])
                 #tostore.append((pname, myjson))
 
-                myjson = json.dumps([round(float(homo), 3), round(float(lumo), 3), round(float(etens, 3), list(etoscs)])
-                )
+                myjson = json.dumps([round(float(homo), 3), round(float(lumo), 3), etens, list(etoscs)])
                 tostore.append((pname, myjson))
 
             for pname, myjson in tostore:
