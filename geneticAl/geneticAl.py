@@ -344,7 +344,7 @@ class GA(object):
                     lumo = round(data.moenergies[0][data.homos[0] + 1], 3)
                     homo = round(data.moenergies[0][data.homos[0]], 3)
                     etens = [round(x*convert, 3) for x in data.etenergies] # cm-1 to eV
-                    etoscs = data.etoscs
+                    etoscs = [round(x, 3) for x in data.etoscs]
                 except:
                     continue
                 if max(etens) <= 0:
