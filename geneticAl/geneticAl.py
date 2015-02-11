@@ -317,11 +317,9 @@ class GA(object):
                 filename = os.path.join("gaussian", "%d.out.gz" % i)
                 if os.path.isfile(filename):
                     os.remove(filename)
-                # run g09 as a subprocess on my computer
+                # run g09 as a subprocess
                 g09 = subprocess.call("(cd gaussian; g09 %d.gjf %d.out)" % (i,i), shell=True)
 
-                # run g09 as a subprocess on the cluster
-                #g09 = subprocess.call("(cd gaussian; runGaussian.sh %d.gjf %d.out)" % (i,i), shell=True)
             gzCmd = subprocess.call("(cd gaussian; gzip *.out)", shell=True)
 
     def extractcalcdata(self):
@@ -343,9 +341,9 @@ class GA(object):
                 except AssertionError:
                     continue
                 try:
-                    lumo = data.moenergies[0][data.homos[0] + 1]
-                    homo = data.moenergies[0][data.homos[0]]
-                    etens = [x*convert for x in data.etenergies] # cm-1 to eV
+                    lumo = round(data.moenergies[0][data.homos[0] + 1], 3)
+                    homo = round(data.moenergies[0][data.homos[0]], 3)
+                    etens = [round(x*convert, 3) for x in data.etenergies] # cm-1 to eV
                     etoscs = data.etoscs
                 except:
                     continue
@@ -360,7 +358,7 @@ class GA(object):
                 #myjson = json.dumps([float(homo), float(lumo), etens, list(etoscs), list(data.moenergies[0]), int(data.homos[0])])
                 #tostore.append((pname, myjson))
 
-                myjson = json.dumps([round(float(homo), 3), round(float(lumo), 3), etens, list(etoscs)])
+                myjson = json.dumps([float(homo), float(lumo), etens, list(etoscs)])
                 tostore.append((pname, myjson))
 
             for pname, myjson in tostore:
