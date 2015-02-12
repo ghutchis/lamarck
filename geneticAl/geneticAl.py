@@ -332,7 +332,7 @@ class GA(object):
                 mylogfile = os.path.join("gaussian", "%d.out.gz" % j)
                 if not os.path.isfile(mylogfile):
                     continue
-                #logfile = ccopen("tmp.out")
+                # logfile = ccopen("tmp.out")
                 logfile = ccopen(mylogfile)
                 logfile.logger.setLevel(logging.ERROR)
                 try:
@@ -363,8 +363,7 @@ class GA(object):
                 seq = output[0]
                 # chain the .replace(old, new) function to replace id with A, di with B, uq with D, qu with E to make
                 # sequences easier to read
-                seqSym = seq.replace("(qu)", "A").replace("(uq)", "B").replace(
-                         "(di)", "D").replace("(id)", "E")
+                seqSym = seq.replace("(qu)", "A").replace("(uq)", "B").replace("(di)", "D").replace("(id)", "E")
                 self.admin.storedata(pname, self.gen, seqSym, myjson)
 
     def getscore(self, polname, log=False):
