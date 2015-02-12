@@ -224,9 +224,9 @@ class GA(object):
 
     def initallpop(self, chosen_monos=None):
         if chosen_monos is None:
-           chosen_monos = self.monomers
+            chosen_monos = self.monomers
             # If want to select an initial poplulation manually, use the following function and define above in code.
-            #chosen_monos = self.selected_initial_popluation
+            # chosen_monos = self.selected_initial_popluation
         self.log("\tInitialising population")
         self.N = 0
 
@@ -389,9 +389,9 @@ class GA(object):
             score = scale * self.efficiency.efficiency(homo, trans, -4.61)
         elif self.objectivefn == "distance":
             penalty = 1.0 - scale
-            distance = math.sqrt((homo-(-5.70))**2 + (trans-1.39)**2)
+            distance = math.sqrt((homo - (-5.70)) ** 2 + (trans - 1.39) ** 2)
             score = distance + penalty
-            score = -score # We are finding the maximum
+            score = -score  # We are finding the maximum
         if log:
             return score, logtext
         else:
