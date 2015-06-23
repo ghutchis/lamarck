@@ -3,6 +3,7 @@ import random
 import pdb
 import json
 import pybel
+import numpy as np
 
 import Efficiency as effmod
 
@@ -252,17 +253,17 @@ def besttrans(etens, etoscs, return_osc=False):
     idx = 0
     found = -1
     max = 0
+    # Finds largest etosc
     for idx in range(0, len(etens)):
         if etoscs[idx] >= 1.0 and found==-1:
             found = idx
         if etoscs[idx] > etoscs[max]:
             max = idx
-
+    # Pick the etens that goes with the maximum oscillator strength
     scale = 1.0
     chosenidx = found
     if found == -1:
-        # Use the strongest oscillator, and scale by the
-        # strength
+        # Use the strongest oscillator, and scale by its strength
         chosenidx = max
         scale = etoscs[chosenidx]
 
@@ -270,6 +271,25 @@ def besttrans(etens, etoscs, return_osc=False):
         return scale, etens[chosenidx]
     else:
         return scale, etens[chosenidx], etoscs[chosenidx]
+
+def besttrans_revised(etens, etoscs, return_osc=False):
+    """Return the scaling factor and energy of the best transition"""
+    # Pick the largest oscillator strength
+    etoscs_max = max(etoscs)
+    # Find the transition that corresponds to the largest oscillator strength
+    etens_max_etoscs = etens[etoscs.index(max(etoscs))]
+
+    # The scaling factor is the largest oscillator strength with a maximum value of 1
+    scale = 1.0
+    if etoscs_max <= 1.0:
+        scale = max(etoscs)
+
+    if not return_osc:
+        return scale, etens_max_etoscs
+
+    else:
+        return scale, etens_max_etoscs, etoscs_max
+
 
 def getHplusBG(json):
     """Get the HOMO and lowest energy significant transition

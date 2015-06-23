@@ -75,24 +75,9 @@ class Efficiency(object):
         return eff
 
     def zindoEff(self, homo, bandgap):
-        # HOMOs need no scaling, fit is 1.01 + ~0.4
-        # PCBM LUMO = -6.7796 eV + (0.883 * 2.1886 + 0.530)
-        #           = -4.317 eV
-#        scaledGap = 0.883 * float(bandgap) + 0.530
-#        return self.efficiency(homo, scaledGap, -4.3171)
-#        return self.efficiency(homo, bandgap, -4.591)
         return self.efficiency(homo, bandgap, -4.61)
-        # Numbers for PM6 -- currently unused
-        # PCBM LUMO = -6.82998 eV + (1.1522*2.2187 + 0.0536)
-        #           = -4.2736 eV
-        # scaledGap = 1.1522*float(bandgap) + 0.0536
-        # return self.efficiency(homo, scaledGap, -4.2736)
 
     def b3lypEff(self, homo, bandgap):
-        # PCBM HOMO = 1.3023 * (-5.77368eV) + 0.481 = -7.0381 eV
-        # Calibration from Zhan & Dixon, J. Phys. Chem. A (2003) 107 p. 4184.
-        # PCBM LUMO = -7.0381 eV + (0.7397 * 2.5684eV + 0.8461)
-        #           = -4.2922
         scaledHOMO = 1.3023 * float(homo) + 0.481
         scaledGap =  0.7397 * float(bandgap) + 0.8461
         return self.efficiency(scaledHOMO, scaledGap, -4.2922)

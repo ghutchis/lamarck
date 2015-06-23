@@ -380,7 +380,7 @@ class GA(object):
             homo, lumo, etens, etoscs = jsondata
         else:
             homo, lumo, etens, etoscs, moenergies, homo_idx = jsondata
-        scale, trans = besttrans(etens, etoscs)
+        scale, trans = besttrans_revised(etens, etoscs)
         if scale < 1.0:
             logtext += "Os=%.1f" % (scale*100,)
 
@@ -459,7 +459,7 @@ def testdb(admin):
 
 
 def doGA(admin, length, Nchromos, nbrs, simmatrix,
-         moverandomly=False, no_gaussian=False,
+         moverandomly=False, no_gaussian=True,
          objectivefn="eff", logmessage=""):
     """If no_gaussian is True, this will cause the algorithm not
     to generate and run any new Gaussian jobs. Any missing values in the

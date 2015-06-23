@@ -78,11 +78,11 @@ def getmonomers(filename, debug=False):
 
     # To quickly triple the data set size, turn on this function and the above vinyl function to add a C#C group to
     # the end of each monomer
-    #for smile in open(inputfile, "r"):
-    #    if any(smile.find(x) >= 0 for x in exclude):
-    #        excluded.append(smile)
-    #    else:
-    #        monos.append(smile.rstrip() + 'C#C')
+    for smile in open(inputfile, "r"):
+        if any(smile.find(x) >= 0 for x in exclude):
+            excluded.append(smile)
+        else:
+            monos.append(smile.rstrip() + 'C#C')
 
     oldlen = len(monos)
     monos = set(monos)

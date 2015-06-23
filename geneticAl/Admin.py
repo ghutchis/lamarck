@@ -12,9 +12,6 @@ try:
 except ImportError:
     import sqlite3
 
-# TODO If we want to analyze by sequence, can we save the sequence code in the database or will this make the database too large?
-
-
 class Admin(object):
     def __init__(self, jobname):
         self.job = jobname
