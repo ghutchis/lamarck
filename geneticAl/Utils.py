@@ -274,21 +274,17 @@ def besttrans(etens, etoscs, return_osc=False):
 
 def besttrans_revised(etens, etoscs, return_osc=False):
     """Return the scaling factor and energy of the best transition"""
-    # Pick the largest oscillator strength
-    etoscs_max = max(etoscs)
+
     # Find the transition that corresponds to the largest oscillator strength
     etens_max_etoscs = etens[etoscs.index(max(etoscs))]
 
     # The scaling factor is the largest oscillator strength with a maximum value of 1
-    scale = 1.0
-    if etoscs_max <= 1.0:
-        scale = max(etoscs)
+    scale = min(1.0, max(etoscs))
 
     if not return_osc:
         return scale, etens_max_etoscs
-
     else:
-        return scale, etens_max_etoscs, etoscs_max
+        return scale, etens_max_etoscs, max(etoscs)
 
 
 def getHplusBG(json):
