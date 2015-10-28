@@ -317,9 +317,9 @@ class GA(object):
                 if os.path.isfile(filename):
                     os.remove(filename)
                 # run g09 as a subprocess
-                g09 = subprocess.call("(cd gaussian; g09 %d.gjf %d.out)" % (i,i), shell=True)
+                g09 = subprocess.call("(cd gaussian; g09 < %d.gjf > %d.log)" % (i,i), shell=True)
 
-            gzCmd = subprocess.call("(cd gaussian; gzip *.out)", shell=True)
+            gzCmd = subprocess.call("(cd gaussian; gzip *.log)", shell=True)
 
     def extractcalcdata(self):
         if len(self.gjfs) > 0:
@@ -471,7 +471,7 @@ def doGA(admin, length, Nchromos, nbrs, simmatrix,
         ga.runGaussian()
         ga.extractcalcdata()
     ga.logfitness(ga.pop, "Initial")
-    for i in range(100):
+    for i in range(1):
         ga.makechildren(moverandomly)
         if not no_gaussian:
             ga.makeGJF(ga.children, length)
