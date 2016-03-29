@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#PBS -N $1
+#PBS -j oe
+#PBS -l nodes=1:ppn=12
+#PBS -q shared
+#PBS -l walltime=120:00:00
+
+cd $SCRATCH
+
+module load gaussian/g09B.01
+
+#INPUT_FILE=$INPUT_BASENAME.com
+
+g09 < $1 > $1.log
+cp $SCRATCH/$1.chk $PBS_O_WORKDIR
