@@ -15,13 +15,15 @@ def extractdata(folder):
     print >> archivefile, "\t".join(["File ID", "SMILES", "HOMO (eV)", "LUMO (eV)",
                "Trans (eV)", "Osc", "..."])
 
-    getnum = lambda x: int(x.split("/")[1].split(".")[0])
+    #getnum = lambda x: int(x.split("/")[1].split(".")[0])
+    getnum = lambda x: int(x.split("/")[7].split(".")[0])
     homos = []
     lumos = []
     trans = []
     convert = 1.0 / utils.convertor(1, "eV", "cm-1")
-    for filename in sorted(glob.glob(os.path.join(folder, "*.gz")),
-                           key=getnum):
+
+    #for filename in sorted(glob.glob("*.gz"), key=getnum):
+    for filename in sorted(glob.glob(os.path.join(folder, "*.gz")), key=getnum):
 
         number = getnum(filename)
         smile = smiles[number]
@@ -36,10 +38,10 @@ def extractdata(folder):
         text = StringIO.StringIO("\n".join(list(lines)))
 
         logfile = ccopen(text)
-        logfile.logger.setLevel(logging.ERROR)
+        #logfile.logger.setLevel(logging.ERROR)
         data = logfile.parse()
 
-        #assert(len(data.homos) == 1)
+        assert(len(data.homos) == 1)
         smiles.append(smile)
         homo = data.homos[0]
         homos.append(data.moenergies[0][homo])
