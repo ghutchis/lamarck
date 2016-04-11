@@ -2,7 +2,7 @@
 
 #PBS -N g09
 #PBS -j oe
-#PBS -l nodes=1:ppn=16
+#PBS -l nodes=1:ppn=12
 #PBS -q dev
 #PBS -l walltime=00:14:00
 
