@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#PBS -N g09
+#PBS -N GeneticAl
 #PBS -j oe
 #PBS -l nodes=1:ppn=12
 #PBS -q dev
@@ -28,7 +28,7 @@ module load gaussian/g09B.01
 # INPUT=$1
 WORK=`pwd`
 EXE=/ihome/ghutchison/iek2/screeningproject/geneticAl/geneticAl.py
-SCRATCH=/scratch/${USER}/${JOB_ID}
+#SCRATCH=/scratch/${USER}/${JOB_ID}
 
 python $EXE -d output/Apr_11_16_a --seed=2 --length=4 -N 6 --matrix=mostsim4.json --nbrs=7 --objective=distance
 
