@@ -18,8 +18,8 @@ all_monomer_pairs = []
 
 for line in dataSet1.readlines():
     # Pull SMILES
-    smiles = line.split("_")[0].split("~")
-    #smiles = line.split("\"")[1].split("_")[0].split("~")
+    #smiles = line.split("_")[0].split("~")
+    smiles = line.split("\"")[1].split("_")[0].split("~")
     # Convert SMILES to canonical SMILES
     mol_1 = pybel.readstring("smi", smiles[0])
     canmol1 = mol_1.write("can").split("\t")[0]
