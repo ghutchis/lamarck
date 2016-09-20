@@ -6,24 +6,7 @@ from optparse import OptionParser
 sys.path.append(os.path.join("..", "geneticAl"))
 #from Utils import globalopt
 
-<<<<<<< HEAD
-# When using this file to generate input files to be run on FRANK use the following headers and make sure that the number
-# of processors (nproc) is equal to the number of processors specified in the job submission file:
-# header = "%%nproc=12\n%%mem=1GB\n%%Chk=%d.chk\n#T PM6 OPT=(MaxCycles=500)"
-# header_b = """
-# --Link1--
-# %%nproc=12
-# %%mem=1GB
-# %%Chk=%d.chk
-# %%NoSave
-# # Geom=AllCheck ZINDO(NStates=15,Singlets)
-# """
-
 header = "%%nproc=1\n%%mem=1GB\n%%Chk=%d.chk\n#T PM6 OPT=(MaxCycles=500)"
-=======
-#header = "%%nproc=1\n%%mem=1GB\n%%Chk=%d.chk\n#T PM6 OPT=(MaxCycles=500)"
-header = "%%nproc=1\n%%mem=1GB\n%%Chk=%d.chk\n#T wB97xD/Def2* OPT=(MaxCycles=500)"
->>>>>>> fc569cecd4ed11305e669455ac8be7e365a4c83b
 header_b = """
 --Link1--
 %%nproc=1
