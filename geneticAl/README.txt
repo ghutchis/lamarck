@@ -65,9 +65,9 @@ Running the Genetic Algorithm
         which uses cached values instead of rerunning the Gaussian calculations. (It may not be exactly the same as
         some failed calculations may have later succeeded.)
 
-    e. To submit a job to the Hutchison clusher:
+    e. To submit a job to Frank:
         1. Adjust the keywords in the runGeneticAl.sh file
-        2. Type: qsub -N <job name>  /Volumes/Users/ilanakanal/screeningproject/geneticAl/RunGeneticAl.sh
+        2. Type: qsub -N <job name>
     f. To preselect the initial population, add a set of monomers from which the initial set should be chosen. In addition,
         CHANGE:  monos = [random.choice(self.monomers) for j in range(2)]
         TO:      monos = [random.choice(selected_initial_population) for j in range(2)]
@@ -85,9 +85,20 @@ Running the Genetic Algorithm
         Save file as a (csv) text file. Delete the top row (header row). SAVE this text file in:
          geneticAl/Analysis_Phase2
 
-    b. Run MonomerCounts.py script:
+    b. Run SplitDBOutputFile.py. This is a script to split the output file from the genetic algorithm
+        (.db file converted to .txt file in a sql converter) into multiple files with smaller number of generations for
+        running the TopMonomers.py script (which takes avg spearman correlation of multiple runs and show top monomers).
+        The new output files will be named as "Tetramer_%s_%sGen_%s.txt" % (size, generations, run). Edit the script for
+        a different naming system. (sys.argv[1] = file to be split; sys.argv[2] = number of monomers in data set
+        (Ex: 131, 442, etc.); sys.argv[3] = run number)
+
+    c. Run MonomerCounts.py script:
             python MonomerCounts.py sys.arg[1] sys.arg[2]
         Where sys.arg[1] is the file created in the previous step (ie. the database saves as a text file with the
         header row removed) and sys.arg[2] is the output file name. I use the naming system monomerset_seedRun.txt
         (ie. 300_4b.txt)
+
+    d. Run CombineSpearmanOutputs.py scripte to combine the spearman outputs and standard errors from all the runs into
+        a single file which can easily be visualized by opening in Datagraph and plottinh. Read in output file from
+        MonomerCounts.py script. Make sure there are headers on the column named Run, SMILES, Count.
 

@@ -45,7 +45,7 @@ FAIL = -9999999
 
 # These are the monomer used for the local search
 chosen_monomers = {8: ['c(s1)c(OCCCO2)c2c1',
-                       'c(s1)c(cccc2)c2c1', 'c(s1)cc(c12)[nH]c(c2s3)cc3',
+                       'c(s1)c(cccc2)c2c1',  'c(s1)cc(c12)[nH]c(c2s3)cc3',
                        'c(s1)cc(c12)Cc(c2s3)cc3', 'c(s1)cc(c12)c(=O)c(c2s3)cc3',
                        'c1oc(c2)c(c1)oc2', 'c(s1)cc(OC)c1',
                        'C(C1=C)=C(C=CC=C2)C2=C1', 'c(s1)c(ON=N2)c2c1',
@@ -126,9 +126,9 @@ def createAllCombinations(mymonos, length):
     for i in range(len(mymonos)):
         for j in range(i, len(mymonos)):
             monos = [mymonos[i], mymonos[j]]
-            if monos[1] > monos[0]:  # In alphabetical order
+            if monos[1] > monos[0]: # In alphabetical order
                 monos = [monos[1], monos[0]]
-            #ndir = 0
+            ndir = 0
             for directions in alldirs(monos, length):
                 dimerunits.append((monos, directions[0], directions[1]))
     return dimerunits
@@ -136,7 +136,7 @@ def createAllCombinations(mymonos, length):
 
 class GA(object):
     selected_initial_population = ['[CH]/C=C\\1/OCC[C](OCC1)', 'C\\1=C/O/C=C(/O/C=C/O/C=C/Oc2c(cccc2)O1)',
-                               'C=C(C)CN', 'C1=C(C=C/C/1=C\\1/C=CC(=C1)N)N',
+                               'C=C(C)CN','C1=C(C=C/C/1=C\\1/C=CC(=C1)N)N',
                                 'C1=C(F)C=C/C/1=C\\1/C(=CC(=C1)F)', 'C1=C(N(=O)=O)C=C/C/1=C\\1/C=CC(N(=O)=O)=C1',
                                 'C1=C/C(/C(=C1)C#N)=C\\1/C=C(C=C1C#N)', 'C1=C/C(/C(=C1)F)=C\\1/C=C(C=C1F)',
                                  'C1=C/C(/C(=C1)OC)=C\\1/C=C(C=C1OC)', 'C1=C2OCCSC2=C([S@@]1NC)',
@@ -189,7 +189,7 @@ class GA(object):
                  logmessage=""):
         self.admin = admin
         self.N = Nchromos
-        self.R = R  # the number of nbrs
+        self.R = R # the number of nbrs
         self.simmatrix = simmatrix
         self.monomers = sorted(self.simmatrix.keys())
         self.length = length
@@ -212,10 +212,10 @@ class GA(object):
         # Make self.N polymers of length self.length
         dimerunits = []
         for i in range(self.N):
+            dimerunit = [[], "", ""]
             monos = [random.choice(self.monomers) for j in range(2)]
-            # If you want define the initial population (instead of a random set of monomers) use monos variable below
             #monos = [random.choice(self.selected_initial_population) for j in range(2)]
-            if monos[1] > monos[0]:  # In alphabetical order
+            if monos[1] > monos[0]: # In alphabetical order
                 monos = [monos[1], monos[0]]
             directions = randomdirs(monos, self.length)
             dimerunits.append((monos, directions[0], directions[1]))
@@ -224,9 +224,8 @@ class GA(object):
 
     def initallpop(self, chosen_monos=None):
         if chosen_monos is None:
-            chosen_monos = self.monomers
-            # If want to select an initial poplulation manually, use the following function and define above in code.
-            # chosen_monos = self.selected_initial_popluation
+           chosen_monos = self.monomers
+            #chosen_monos = self.selected_initial_popluation
         self.log("\tInitialising population")
         self.N = 0
 
@@ -284,8 +283,8 @@ class GA(object):
 
             header = "%nproc=1\n%mem=1GB\n#n ZINDO(NStates=10,Singlets)"
             header_b = "\n"
-            #header = "%%nproc=1\n%%mem=1GB\n%%Chk=%s.chk\n#T PM6 OPT"
-            #header_b = """
+#            header = "%%nproc=1\n%%mem=1GB\n%%Chk=%s.chk\n#T PM6 OPT"
+#            header_b = """
 #--Link1--
 #%%nproc=1
 #%%mem=1GB
@@ -295,7 +294,7 @@ class GA(object):
 #"""
             gaussian = (header + "\n\n" + smi + "\n"
                 + "\n".join(mol.write("gau").replace("0  3\n", "0  1\n").split("\n")[3:])
-                + header_b)  # % (idx, idx)
+                + header_b) # % (idx, idx)
             output = open(os.path.join("gaussian", "%s.gjf" % idx), "w")
             output.write(gaussian)
             output.close()
@@ -313,15 +312,15 @@ class GA(object):
             # loop through the gjf input files and run g09
             for i in range(len(self.gjfs)):
                 # if there are old .gz files (e.g., previous generation).. remove them
-                filename = os.path.join("gaussian", "%d.log.gz" % i)
+                filename = os.path.join("gaussian", "%d.out.gz" % i)
                 if os.path.isfile(filename):
                     os.remove(filename)
-                # run g09 as a subprocess
-                g09 = subprocess.call("(cd gaussian; g09  %d.gjf  %d.log)" % (i,i), shell=True)
+                # run g09 as a subprocess on my computer
+                g09 = subprocess.call("(cd gaussian; g09 %d.gjf %d.out)" % (i,i), shell=True)
 
-                # run g09 as a subprocess on Frank (work in progress)
+                # run g09 as a subprocess on the cluster
                 #g09 = subprocess.call("(cd gaussian; runGaussian.sh %d.gjf %d.out)" % (i,i), shell=True)
-            gzCmd = subprocess.call("(cd gaussian; gzip -f  *.log)", shell=True)
+            gzCmd = subprocess.call("(cd gaussian; gzip -f *.out)", shell=True)
 
     def extractcalcdata(self):
         if len(self.gjfs) > 0:
@@ -331,10 +330,10 @@ class GA(object):
 
                 print 'on pname=%s, j=%s' % (pname, j)
 
-                mylogfile = os.path.join("gaussian", "%d.log.gz" % j)
+                mylogfile = os.path.join("gaussian", "%d.out.gz" % j)
                 if not os.path.isfile(mylogfile):
                     continue
-                # logfile = ccopen("tmp.out")
+                #logfile = ccopen("tmp.out")
                 logfile = ccopen(mylogfile)
                 logfile.logger.setLevel(logging.ERROR)
                 try:
@@ -342,30 +341,29 @@ class GA(object):
                 except AssertionError:
                     continue
                 try:
-                    # Values rounded to reduce size of output file
-                    lumo = round(data.moenergies[0][data.homos[0] + 1], 3)
-                    homo = round(data.moenergies[0][data.homos[0]], 3)
-                    etens = [round(x*convert, 3) for x in data.etenergies] # cm-1 to eV
-                    etoscs = [round(x, 3) for x in data.etoscs]
+                    lumo = data.moenergies[0][data.homos[0] + 1]
+                    homo = data.moenergies[0][data.homos[0]]
+                    etens = [x*convert for x in data.etenergies] # cm-1 to eV
+                    etoscs = data.etoscs
                 except:
                     continue
                 if max(etens) <= 0:
                     continue
 
-                # File stores too much info for large data set, so use other function (below) which saves fewer energies
-                #myjson = json.dumps([float(homo), float(lumo), etens, list(etoscs), list(data.moenergies[0]), int(data.homos[0])])
-                #tostore.append((pname, myjson))
+                #myjson = json.dumps([homo, lumo, etens, etoscs.tolist()])
+                # adds JSON with HOMO, LUMO, electronic transition energies, et oscillator strengths
+                # and then all the MO energies
 
-                myjson = json.dumps([float(homo), float(lumo), etens, list(etoscs)])
+                myjson = json.dumps([float(homo), float(lumo), etens, list(etoscs), list(data.moenergies[0]), int(data.homos[0])])
                 tostore.append((pname, myjson))
 
             for pname, myjson in tostore:
                 # get the sequence
                 output = get_comb(pname, self.length)
                 seq = output[0]
-                # chain the .replace(old, new) function to replace id with A, di with B, uq with D, qu with E to make
-                # sequences easier to read
-                seqSym = seq.replace("(qu)", "A").replace("(uq)", "B").replace("(di)", "D").replace("(id)", "E")
+                # chain the .replace(old, new) function to replace id with A, di with B, uq with D, qu with E
+                seqSym = seq.replace("(qu)", "A").replace("(uq)", "B").replace(
+                         "(di)", "D").replace("(id)", "E")
                 self.admin.storedata(pname, self.gen, seqSym, myjson)
 
     def getscore(self, polname, log=False):
@@ -382,7 +380,7 @@ class GA(object):
             homo, lumo, etens, etoscs = jsondata
         else:
             homo, lumo, etens, etoscs, moenergies, homo_idx = jsondata
-        scale, trans = besttrans_revised(etens, etoscs)
+        scale, trans = besttrans(etens, etoscs)
         if scale < 1.0:
             logtext += "Os=%.1f" % (scale*100,)
 
@@ -390,9 +388,9 @@ class GA(object):
             score = scale * self.efficiency.efficiency(homo, trans, -4.61)
         elif self.objectivefn == "distance":
             penalty = 1.0 - scale
-            distance = math.sqrt((homo - (-5.70)) ** 2 + (trans - 1.39) ** 2)
+            distance = math.sqrt((homo-(-5.70))**2 + (trans-1.39)**2)
             score = distance + penalty
-            score = -score  # We are finding the maximum
+            score = -score # We are finding the maximum
         if log:
             return score, logtext
         else:
@@ -436,7 +434,7 @@ The mutations should always allow the exploration of local space
                             newchild[i] = random.choice(
                                            self.simmatrix[mon][:self.R])
 
-                if newchild[1] > newchild[0]:  # Alphabetical order
+                if newchild[1] > newchild[0]: # Alphabetical order
                     newchild = [newchild[1], newchild[0]]
 
                 # Create random dirs
@@ -461,7 +459,7 @@ def testdb(admin):
 
 
 def doGA(admin, length, Nchromos, nbrs, simmatrix,
-         moverandomly=False, no_gaussian=True,
+         moverandomly=False, no_gaussian=False,
          objectivefn="eff", logmessage=""):
     """If no_gaussian is True, this will cause the algorithm not
     to generate and run any new Gaussian jobs. Any missing values in the

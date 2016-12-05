@@ -31,13 +31,15 @@ def analysis(perc):
     s = c.unstack().mean()
     s_stderr = corr.values[np.triu_indices_from(corr.values, 1)].std() / np.sqrt(s.count())
     # Saves info to output file 
-    output_file.write("Percentage=\t%s\tNumber of monomers =\t %s\t Corr=\t %.3f\tStdErr =\t%.3f\n %s\n"
-                      % (perc, num_monomers, pt_avg, s_stderr,a.index.values))
+    #output_file.write("Percentage=\t%s\tNumber of monomers =\t %s\t Corr=\t %.3f\tStdErr =\t%.3f\n %s\n"
+     #                 % (perc, num_monomers, pt_avg, s_stderr,a.index.values))
+    output_file.write("Percentage=\t%s\tNumber of monomers =\t %s\t Corr=\t %.3f\tStdErr =\t%.3f\n"
+                      % (perc, num_monomers, pt_avg, s_stderr))
 
 # Read in output file from MonomerCounts.py script. Make sure there are headers on the column named Run, SMILES, Count
 dataFile = sys.argv[1]
 df = pd.read_csv(dataFile, sep='\t', header=0)
-
+df.columns = ['Run', 'SMILES', 'Counts']
 output_file = open(sys.argv[2], "w")
 
 # What percentiles to we want to return? When 0.75 is run, the output is the top 25% of the data, etc.
