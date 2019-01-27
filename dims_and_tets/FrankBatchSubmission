@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# Change the path in this file to include the gaussian input files which you want to run
-
-for file in /ihome/ghutchison/iek2/screeningproject/dims_and_tets/Tetramer_909_wB97xD/*.com
-do
-    qsub GaussianJob -F "$file"
-done

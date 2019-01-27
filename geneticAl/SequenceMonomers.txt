@@ -1,6 +1,0 @@
-(di)  (id)
-(di)  (qu)
-(di)  (uq)
-(qu)  (uq)
-(id)  (qu)
-(id)  (uq)
